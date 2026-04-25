@@ -1,3 +1,31 @@
+// Hero background video cycling
+const heroVideos = [
+    'assets/Random/broad-1.mp4',
+    'assets/Random/broad-3.mp4',
+    'assets/Random/Broad-4.mp4',
+    'assets/Random/Broad-5.mp4',
+    'assets/Random/Broad-6.mp4',
+    'assets/Tourism/Broad-Tourism-1.mp4',
+    'assets/Tourism/Tourism-1.mp4',
+    'assets/Tourism/Tourism-3.mp4',
+];
+
+let heroIndex = Math.floor(Math.random() * heroVideos.length);
+const heroBg = document.querySelector('.hero-bg-video');
+
+function playHeroVideo(index) {
+    heroBg.src = heroVideos[index];
+    heroBg.load();
+    heroBg.play().catch(() => {});
+}
+
+playHeroVideo(heroIndex);
+
+heroBg.addEventListener('ended', () => {
+    heroIndex = (heroIndex + 1) % heroVideos.length;
+    playHeroVideo(heroIndex);
+});
+
 // Navbar: transparent at top, frosted glass on scroll
 const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => {
