@@ -1,33 +1,43 @@
+/* Full-viewport layout — everything visible without scrolling */
 .gallery-section {
-    min-height: 100vh;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
     background: var(--bg);
-    position: relative;
-    z-index: 1;
+    overflow: hidden;
 }
 
 .gallery-inner {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
     max-width: 1320px;
+    width: 100%;
     margin: 0 auto;
-    padding: calc(64px + 3.5rem) 2rem 5rem;
+    padding: calc(64px + 0.75rem) 2rem 1.25rem;
+    gap: 0.6rem;
 }
 
+/* ---- Compact header label ---- */
 .gallery-header {
-    margin-bottom: 2rem;
+    flex-shrink: 0;
 }
 
 .gallery-title {
     font-family: 'Orbitron', monospace;
-    font-size: clamp(1.5rem, 3vw, 2.4rem);
-    font-weight: 400;
+    font-size: 0.72rem;
+    font-weight: 600;
     letter-spacing: 4px;
-    color: var(--text);
+    color: var(--text-muted);
     line-height: 1;
+    text-transform: uppercase;
 }
 
-/* ---- Main player ---- */
+/* ---- Main player — fills remaining space ---- */
 .main-player-wrap {
-    width: 100%;
-    aspect-ratio: 16 / 9;
+    flex: 1;
+    min-height: 0;
     background: var(--bg-card);
     border: 1px solid var(--accent-border);
     border-radius: 4px;
@@ -62,18 +72,18 @@
 
 /* ---- Player meta bar ---- */
 .player-meta {
+    flex-shrink: 0;
     display: flex;
     align-items: baseline;
     gap: 1.25rem;
-    padding: 0.85rem 0;
+    padding: 0.45rem 0;
     border-bottom: 1px solid var(--accent-border);
-    margin-bottom: 1.5rem;
-    min-height: 3rem;
+    min-height: 2rem;
 }
 
 .video-meta-title {
     font-family: 'Orbitron', monospace;
-    font-size: 0.78rem;
+    font-size: 0.72rem;
     font-weight: 600;
     letter-spacing: 2.5px;
     color: var(--text);
@@ -82,7 +92,7 @@
 
 .video-meta-cat {
     font-family: 'Rajdhani', sans-serif;
-    font-size: 0.75rem;
+    font-size: 0.72rem;
     font-weight: 600;
     letter-spacing: 2px;
     color: var(--accent);
@@ -91,8 +101,9 @@
 
 /* ---- Thumbnail strip ---- */
 .thumb-strip-outer {
+    flex-shrink: 0;
     overflow-x: auto;
-    padding-bottom: 0.75rem;
+    padding-bottom: 0.25rem;
     scrollbar-width: thin;
     scrollbar-color: var(--accent-border) transparent;
 }
@@ -112,7 +123,7 @@
 
 .thumb-strip {
     display: flex;
-    gap: 10px;
+    gap: 8px;
     width: max-content;
 }
 
@@ -168,11 +179,11 @@
 
 .thumb-label {
     font-family: 'Rajdhani', sans-serif;
-    font-size: 0.72rem;
+    font-size: 0.68rem;
     font-weight: 500;
     letter-spacing: 1px;
     color: var(--text-muted);
-    padding: 0.45rem 0.1rem 0;
+    padding: 0.35rem 0.1rem 0;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -188,20 +199,31 @@
 
 /* ---- Responsive ---- */
 @media (max-width: 768px) {
+    .gallery-section {
+        height: auto;
+        min-height: 100vh;
+        overflow: visible;
+    }
+
     .gallery-inner {
-        padding: calc(64px + 2.5rem) 1.25rem 4rem;
+        padding: calc(64px + 1rem) 1.25rem 3rem;
+    }
+
+    .main-player-wrap {
+        flex: none;
+        aspect-ratio: 16 / 9;
     }
 
     .thumb-item {
-        width: 150px;
+        width: 148px;
     }
 
     .thumb-preview {
-        width: 150px;
-        height: 84px;
+        width: 148px;
+        height: 83px;
     }
 
     .thumb-label {
-        max-width: 150px;
+        max-width: 148px;
     }
 }
