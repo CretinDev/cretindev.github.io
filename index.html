@@ -3,139 +3,251 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LakeLife Photo Co. - Drone Photography</title>
+    <title>LakeLife Photo Co. — Aerial Property Intelligence | North Bay, Ontario</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Rajdhani:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
-<body id="top">
-    <!-- Navigation Bar -->
+<body>
+
+    <!-- Navigation -->
     <nav id="navbar">
-        <div class="nav-container">
+        <div class="nav-inner">
+            <a href="#hero" class="nav-logo">LAKELIFE<span class="accent">.</span></a>
             <ul class="nav-links">
-                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#science">Why It Matters</a></li>
+                <li><a href="#about">Pilot</a></li>
                 <li><a href="gallery.html">Gallery</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#contact" class="nav-cta">Book a Survey</a></li>
             </ul>
-            <div class="mobile-menu-toggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
+            <button class="mobile-toggle" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section id="portfolio" class="hero">
-        <div class="hero-layout">
-            <!-- Left Column: Title and Tagline -->
-            <div class="hero-content">
-                <h1>LakeLife Photo Co.</h1>
-                <p class="tagline">Capturing Moments that Matter</p>
-
-                <div class="sector-description">
-                    <div class="description-text active" data-sector="default">
-                        <p>We use professional drone imagery to help organizations tell clearer stories, document work that matters, and engage audiences from perspectives that ground cameras can't capture.</p>
-                    </div>
-                    <div class="description-text" data-sector="commercial">
-                        <p>The key to running a successful business in the remote landscape of Northern Ontario, is reach. Whether it's a remote lakeside campground, or a golf course on a hill top, we will go the distance to capture the essence of your commercial asset in the best light possible.</p>
-                    </div>
-                    <div class="description-text" data-sector="industrial">
-                        <p>Getting imagery of big rigs and industrial equipment is always a privilege. Our goal is to help your company show off your construction projects from start to finish. We offer detailed service contracts that lock in designated routine visits to a location, as well as options for on demand visit requests.</p>
-                    </div>
-                    <div class="description-text" data-sector="realestate">
-                        <p>Captivating real estate imagery that helps properties stand out and sell faster. Our aerial perspectives showcase homes and land in their best light, giving potential buyers a complete view of the property.</p>
-                    </div>
-                    <div class="description-text" data-sector="tourism">
-                        <p>Showcase the beauty and adventure of your destination with stunning aerial footage that inspires travelers and captures the essence of what makes your location special.</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Right Column: Buttons and Videos -->
-            <div class="hero-video-section">
-                <div class="sector-buttons">
-                    <button class="sector-btn" data-sector="commercial">Commercial</button>
-                    <button class="sector-btn" data-sector="industrial">Industrial</button>
-                    <button class="sector-btn" data-sector="realestate">Real Estate</button>
-                    <button class="sector-btn" data-sector="tourism">Tourism</button>
-                </div>
-
-                <div class="video-container">
-                    <video class="hero-video active" autoplay muted loop playsinline data-sector="default">
-                        <source src="assets/default-hero.mp4" type="video/mp4">
-                    </video>
-                    <video class="hero-video" muted playsinline data-sector="commercial" data-index="0">
-                        <source src="assets/commercial-1.mp4" type="video/mp4">
-                    </video>
-                    <video class="hero-video" muted playsinline data-sector="commercial" data-index="1">
-                        <source src="assets/commercial-2.mp4" type="video/mp4">
-                    </video>
-                    <video class="hero-video" muted playsinline data-sector="industrial" data-index="0">
-                        <source src="assets/industrial-1.mp4" type="video/mp4">
-                    </video>
-                    <video class="hero-video" muted playsinline data-sector="industrial" data-index="1">
-                        <source src="assets/industrial-2.mp4" type="video/mp4">
-                    </video>
-                    <video class="hero-video" muted playsinline data-sector="industrial" data-index="2">
-                        <source src="assets/industrial-3.mp4" type="video/mp4">
-                    </video>
-                    <video class="hero-video" muted playsinline data-sector="realestate" data-index="0">
-                        <source src="assets/realestate-1.mp4" type="video/mp4">
-                    </video>
-                    <video class="hero-video" muted playsinline data-sector="realestate" data-index="1">
-                        <source src="assets/realestate-2.mp4" type="video/mp4">
-                    </video>
-                    <video class="hero-video" muted playsinline data-sector="tourism" data-index="0">
-                        <source src="assets/tourism-1.mp4" type="video/mp4">
-                    </video>
-                    <video class="hero-video" muted playsinline data-sector="tourism" data-index="1">
-                        <source src="assets/tourism-2.mp4" type="video/mp4">
-                    </video>
-                </div>
-            </div>
+    <!-- Hero -->
+    <section id="hero">
+        <div class="hero-video-wrap">
+            <video autoplay muted loop playsinline class="hero-bg-video">
+                <source src="assets/broad-1.mp4" type="video/mp4">
+            </video>
+            <div class="hero-overlay"></div>
         </div>
-
-        <div class="scroll-indicator">
-            <span>Scroll Down</span>
-            <div class="arrow"></div>
+        <div class="hero-content">
+            <div class="hero-tag">NORTH BAY, ONTARIO &nbsp;/&nbsp; AERIAL OPERATIONS</div>
+            <h1 class="hero-title">AERIAL<br>PROPERTY<br>INTELLIGENCE</h1>
+            <p class="hero-sub">Raw drone documentation. No editing. Delivered on-site.</p>
+            <a href="#contact" class="btn-primary hero-btn">BOOK A SURVEY</a>
+        </div>
+        <div class="hero-stats">
+            <div class="stat">
+                <span class="stat-num">$150 – $300</span>
+                <span class="stat-label">Per Survey</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat">
+                <span class="stat-num">RAW</span>
+                <span class="stat-label">Unedited Footage</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat">
+                <span class="stat-num">ON-SITE</span>
+                <span class="stat-label">Same-Day Delivery</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat">
+                <span class="stat-num">DJI Mini 4 Pro</span>
+                <span class="stat-label">Equipment</span>
+            </div>
         </div>
     </section>
 
-
-    <!-- About/Contact Section -->
-    <section id="contact" class="about contact">
-        <div class="container">
-            <h2>About Me</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <p>Hi. My name is Jim Craven. I am the owner, operator, and primary driver of the LakeLife Photo Co. I moved to the Nipissing area from the United States in 2016 after earning a Telecommunications degree in Broadcast and Media production in Arizona. I have an interest in exploration imagery, and have a very "boots on the ground" approach to my work. I enjoy industrial and construction imagery and like to provide progression updates of development projects taking place around the Nipissing area.</p>
-                    <p>In addition to drone imagery, I do the very niche and notorious artwork known as stereoscopic 3d film photography. And within the film medium I also offer candid portraiture and event photography for weddings, engagements, and celebrations of life. You can find a collection of artistic and event based work in my gallery.</p>
+    <!-- Services -->
+    <section id="services">
+        <div class="section-inner">
+            <div class="section-header reveal">
+                <span class="section-tag">[ SURVEY TYPES ]</span>
+                <h2>WHAT WE DOCUMENT</h2>
+            </div>
+            <div class="services-grid">
+                <div class="service-card reveal">
+                    <span class="card-num">01</span>
+                    <h3>Commercial Flat Roof</h3>
+                    <p>Post-rainfall pool detection. Standing water, drainage failure, membrane deterioration, and moss growth — documented from above before damage compounds.</p>
+                    <div class="card-tag">HIGH VALUE</div>
+                </div>
+                <div class="service-card reveal">
+                    <span class="card-num">02</span>
+                    <h3>Industrial Progression</h3>
+                    <p>Multi-stage aerial records for active construction and industrial sites. Visual progress updates for contractors, stakeholders, and project management teams.</p>
+                    <div class="card-tag">CONTRACTED</div>
+                </div>
+                <div class="service-card reveal">
+                    <span class="card-num">03</span>
+                    <h3>Residential Property Survey</h3>
+                    <p>Bird's-eye condition analysis. Roof state, lot boundaries, drainage paths, and surrounding property context — captured and handed over the same day.</p>
+                    <div class="card-tag">RESIDENTIAL</div>
+                </div>
+                <div class="service-card reveal">
+                    <span class="card-num">04</span>
+                    <h3>Pre-Renovation Documentation</h3>
+                    <p>Aerial liability baseline before construction begins. A clear aerial record of existing conditions protects property owners, contractors, and insurers alike.</p>
+                    <div class="card-tag">LIABILITY</div>
                 </div>
             </div>
         </div>
+    </section>
 
-        <div class="contact-section-wrapper">
-            <h2 style="margin-top: 4rem;">Our Services</h2>
-            <div class="contact-content">
-                <div class="contact-info">
-                    <p>We specialize in real estate photography and video, providing stunning aerial perspectives that showcase properties in their best light. Our event coverage captures the moments that matter most, from weddings to corporate gatherings. We excel in landscape and nature photography, revealing the beauty of Northern Ontario's wilderness. Our commercial and promotional content helps businesses tell their story through compelling visual narratives.</p>
+    <!-- Science / Why It Matters -->
+    <section id="science">
+        <div class="section-inner">
+            <div class="section-header reveal">
+                <span class="section-tag">[ FIELD ANALYSIS ]</span>
+                <h2>WHY IT MATTERS</h2>
+            </div>
+            <p class="science-intro reveal">After heavy rainfall in Northern Ontario, I flew over downtown North Bay and found pooling water, visible moss, and deteriorated membranes on commercial flat roofs. I wasn't sure if it was a real problem — so I asked AI to do the research.</p>
+
+            <div class="science-stats">
+                <div class="science-stat reveal">
+                    <div class="big-num-wrap">
+                        <span class="big-prefix">$</span><span class="big-num" data-target="20000">0</span><span class="big-suffix">+</span>
+                    </div>
+                    <p>Potential repair cost for significant flat roof water damage left undetected</p>
                 </div>
-                <form class="contact-form">
+                <div class="science-stat reveal">
+                    <div class="big-num-wrap">
+                        <span class="big-num static">48</span><span class="big-suffix">HRS</span>
+                    </div>
+                    <p>Maximum acceptable drain time for a properly functioning commercial flat roof</p>
+                </div>
+                <div class="science-stat reveal">
+                    <div class="big-num-wrap">
+                        <span class="big-num" data-target="30">0</span><span class="big-suffix">%</span>
+                    </div>
+                    <p>Potential savings in repair costs through early aerial detection and documentation</p>
+                </div>
+            </div>
+
+            <blockquote class="science-quote reveal">
+                "Your aunt is wrong on the core point. Yes, commercial flat roofs are designed to handle rain — but 'designed to handle it' means drain within 48 hours, not pool indefinitely. Water that's still sitting 48 hours after rain means there's a drainage problem, and ponding accelerates membrane breakdown, adds structural weight, and breeds algae growth that degrades materials faster. The grass and moss you saw? That's not just unsightly — that's a sign of prolonged standing water and probable membrane deterioration."
+                <cite>— AI Research Response, April 2026</cite>
+            </blockquote>
+
+            <p class="science-note reveal">Routine professional inspections typically cost between $200–$600. Our $250–$300 flat rate fits neatly inside what the industry charges — and one insurance claim denied for lack of documented maintenance can cost a property owner far more than the inspection ever would have.</p>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section id="process">
+        <div class="section-inner">
+            <div class="section-header reveal">
+                <span class="section-tag">[ PROTOCOL ]</span>
+                <h2>HOW IT WORKS</h2>
+            </div>
+            <div class="process-steps">
+                <div class="process-step reveal">
+                    <div class="step-num">01</div>
+                    <h3>Book</h3>
+                    <p>Send your property address and preferred timing. We'll verify airspace, confirm weather windows, and schedule the flight.</p>
+                </div>
+                <div class="process-connector"></div>
+                <div class="process-step reveal">
+                    <div class="step-num">02</div>
+                    <h3>Fly</h3>
+                    <p>We arrive on-site, perform a complete aerial survey with the DJI Mini 4 Pro, and capture full documentation of the property.</p>
+                </div>
+                <div class="process-connector"></div>
+                <div class="process-step reveal">
+                    <div class="step-num">03</div>
+                    <h3>Receive</h3>
+                    <p>Raw footage delivered on-site via USB or sent remotely. No editing, no delay. A secondary copy is retained as a complimentary backup for 90 days.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About / Pilot -->
+    <section id="about">
+        <div class="section-inner">
+            <div class="section-header reveal">
+                <span class="section-tag">[ PILOT FILE ]</span>
+                <h2>THE OPERATOR</h2>
+            </div>
+            <div class="about-grid">
+                <div class="about-photo reveal">
+                    <div class="photo-placeholder">
+                        <span>PHOTO</span>
+                    </div>
+                </div>
+                <div class="about-text reveal">
+                    <h3 class="pilot-name">JIM CRAVEN</h3>
+                    <div class="pilot-cert">Basic RPAS Certified &nbsp;/&nbsp; Transport Canada</div>
+                    <p>Hi. My name is Jim Craven. I'm the owner and operator of LakeLife Photo Co., based in the Nipissing area of Northern Ontario. I moved here from the United States in 2016 after earning a Telecommunications degree in Broadcast and Media Production in Arizona.</p>
+                    <p>I have a boots-on-the-ground approach to this work. I'm less interested in scenery and more interested in the industrial and commercial fabric of this region — what's being built, what's being maintained, and what gets missed when no one's looking from above.</p>
+                    <p>Beyond drone work, I shoot stereoscopic 3D film photography and cover events: weddings, engagements, and celebrations of life. That work lives in the gallery.</p>
+                    <a href="gallery.html" class="btn-secondary">VIEW GALLERY</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+        <div class="section-inner">
+            <div class="section-header reveal">
+                <span class="section-tag">[ INITIATE ]</span>
+                <h2>BOOK A SURVEY</h2>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-info reveal">
+                    <p>Ready to document your property? Send the address, survey type, and any timing preferences. Typical response within 24 hours.</p>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <span class="contact-label">Base of Operations</span>
+                            <span class="contact-val">North Bay, Ontario</span>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-label">Coverage Area</span>
+                            <span class="contact-val">Nipissing Region &amp; surrounding</span>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-label">Rate</span>
+                            <span class="contact-val">$150 – $300 per survey</span>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-label">Delivery</span>
+                            <span class="contact-val">Raw footage, on-site or remote</span>
+                        </div>
+                    </div>
+                </div>
+                <form class="contact-form reveal" id="contactForm">
                     <div class="form-group">
-                        <input type="text" placeholder="Your Name" required>
+                        <input type="text" placeholder="Name" required>
                     </div>
                     <div class="form-group">
-                        <input type="email" placeholder="Your Email" required>
+                        <input type="email" placeholder="Email" required>
                     </div>
                     <div class="form-group">
-                        <input type="tel" placeholder="Phone Number">
+                        <input type="text" placeholder="Property Address">
+                    </div>
+                    <div class="form-group select-wrap">
+                        <select>
+                            <option value="" disabled selected>Survey Type</option>
+                            <option>Commercial Flat Roof</option>
+                            <option>Industrial Progression</option>
+                            <option>Residential Property Survey</option>
+                            <option>Pre-Renovation Documentation</option>
+                            <option>Other</option>
+                        </select>
+                        <span class="select-arrow">&#9660;</span>
                     </div>
                     <div class="form-group">
-                        <textarea placeholder="Tell us about your project" rows="5" required></textarea>
+                        <textarea placeholder="Additional details" rows="4"></textarea>
                     </div>
-                    <button type="submit" class="submit-button">Send Message</button>
+                    <button type="submit" class="btn-primary form-btn">SEND REQUEST</button>
                 </form>
             </div>
         </div>
@@ -143,8 +255,10 @@
 
     <!-- Footer -->
     <footer>
-        <div class="container">
-            <p>&copy; 2025 LakeLife Photo Co. All rights reserved.</p>
+        <div class="footer-inner">
+            <span class="footer-logo">LAKELIFE<span class="accent">.</span></span>
+            <p>&copy; 2025 LakeLife Photo Co. All rights reserved. North Bay, Ontario.</p>
+            <a href="gallery.html" class="footer-link">Gallery</a>
         </div>
     </footer>
 
