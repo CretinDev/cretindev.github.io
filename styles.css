@@ -587,22 +587,14 @@ section {
     position: relative;
 }
 
-.photo-placeholder {
+.pilot-photo {
+    width: 100%;
     aspect-ratio: 3/4;
-    background: var(--bg-card);
-    border: 1px solid var(--accent-border);
+    object-fit: cover;
+    object-position: top;
     border-radius: 4px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.photo-placeholder span {
-    font-family: 'Orbitron', monospace;
-    font-size: 0.58rem;
-    letter-spacing: 5px;
-    color: var(--text-dim);
-    text-transform: uppercase;
+    border: 1px solid var(--accent-border);
+    display: block;
 }
 
 .pilot-name {

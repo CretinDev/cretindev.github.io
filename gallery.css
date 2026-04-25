@@ -19,21 +19,6 @@
     gap: 0.6rem;
 }
 
-/* ---- Compact header label ---- */
-.gallery-header {
-    flex-shrink: 0;
-}
-
-.gallery-title {
-    font-family: 'Orbitron', monospace;
-    font-size: 0.72rem;
-    font-weight: 600;
-    letter-spacing: 4px;
-    color: var(--text-muted);
-    line-height: 1;
-    text-transform: uppercase;
-}
-
 /* ---- Main player — fills remaining space ---- */
 .main-player-wrap {
     flex: 1;
