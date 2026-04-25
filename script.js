@@ -1,5 +1,17 @@
-// Hero background video cycling
-const heroVideos = [
+// Hero background video cycling — survey-biased playlist
+const heroSurvey = [
+    'assets/Commercial/commercial-1.mp4',
+    'assets/Commercial/Commercial-2.mp4',
+    'assets/Commercial/Commercial_WaterDamage.mp4',
+    'assets/Commercial/Commercial_WaterDamage2.mp4',
+    'assets/Commercial/Commercial_WaterDamage3.mp4',
+    'assets/Industrial/industrial-1.mp4',
+    'assets/Industrial/industrial-2.mp4',
+    'assets/Industrial/industrial-3.mp4',
+    'assets/Residential/Sequence 01.mp4',
+];
+
+const heroScenic = [
     'assets/Random/broad-1.mp4',
     'assets/Random/broad-3.mp4',
     'assets/Random/Broad-4.mp4',
@@ -10,11 +22,37 @@ const heroVideos = [
     'assets/Tourism/Tourism-3.mp4',
 ];
 
-let heroIndex = Math.floor(Math.random() * heroVideos.length);
+function shuffleArr(arr) {
+    const a = [...arr];
+    for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+}
+
+// Build a playlist: 3 survey clips then 1 scenic, repeat
+function buildHeroPlaylist() {
+    const survey = shuffleArr(heroSurvey);
+    const scenic = shuffleArr(heroScenic);
+    const list = [];
+    let si = 0;
+    for (let i = 0; i < survey.length; i++) {
+        list.push(survey[i]);
+        if ((i + 1) % 3 === 0) {
+            list.push(scenic[si % scenic.length]);
+            si++;
+        }
+    }
+    return list;
+}
+
+let heroPlaylist = buildHeroPlaylist();
+let heroIndex = Math.floor(Math.random() * heroPlaylist.length);
 const heroBg = document.querySelector('.hero-bg-video');
 
 function playHeroVideo(index) {
-    heroBg.src = heroVideos[index];
+    heroBg.src = heroPlaylist[index];
     heroBg.load();
     heroBg.play().catch(() => {});
 }
@@ -22,7 +60,11 @@ function playHeroVideo(index) {
 playHeroVideo(heroIndex);
 
 heroBg.addEventListener('ended', () => {
-    heroIndex = (heroIndex + 1) % heroVideos.length;
+    heroIndex++;
+    if (heroIndex >= heroPlaylist.length) {
+        heroPlaylist = buildHeroPlaylist();
+        heroIndex = 0;
+    }
     playHeroVideo(heroIndex);
 });
 

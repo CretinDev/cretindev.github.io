@@ -198,20 +198,20 @@ h1, h2, h3 {
 .hero-content {
     position: relative;
     z-index: 2;
-    max-width: 1320px;
-    margin: 0 auto;
-    padding: calc(64px + 5rem) 2rem 0;
+    max-width: 720px;
+    margin: 0;
+    padding: calc(64px + 1.75rem) 2rem 0 4%;
     width: 100%;
 }
 
 .hero-tag {
     font-family: 'Rajdhani', sans-serif;
-    font-size: 0.72rem;
+    font-size: 1rem;
     font-weight: 600;
-    letter-spacing: 4px;
+    letter-spacing: 3px;
     text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 1.5rem;
+    color: #b8b8b8;
+    margin-bottom: 1rem;
     opacity: 0;
     animation: fadeSlideUp 0.8s ease forwards;
     animation-delay: 0.3s;
@@ -1023,7 +1023,7 @@ footer p {
     }
 
     .hero-tag {
-        font-size: 0.6rem;
-        letter-spacing: 2.5px;
+        font-size: 0.85rem;
+        letter-spacing: 2px;
     }
 }
