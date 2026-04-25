@@ -1,14 +1,14 @@
 :root {
-    --bg: #07070f;
-    --bg2: #0b0b18;
-    --bg-card: #0e0e1e;
-    --accent: #0a84ff;
-    --accent-dim: rgba(10, 132, 255, 0.08);
-    --accent-border: rgba(10, 132, 255, 0.22);
-    --accent-glow: rgba(10, 132, 255, 0.4);
-    --text: #dde2ee;
-    --text-muted: #7a7a9a;
-    --text-dim: #3a3a5a;
+    --bg: #111111;
+    --bg2: #161616;
+    --bg-card: #1c1c1c;
+    --accent: #4b7a9e;
+    --accent-dim: rgba(75, 122, 158, 0.07);
+    --accent-border: rgba(75, 122, 158, 0.18);
+    --accent-glow: rgba(75, 122, 158, 0.2);
+    --text: #c8c8c8;
+    --text-muted: #787878;
+    --text-dim: #3c3c3c;
 }
 
 * {
@@ -30,14 +30,14 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
-/* Subtle grid overlay across entire page */
+/* Barely-there grid — texture only, not a feature */
 body::before {
     content: '';
     position: fixed;
     inset: 0;
     background-image:
-        linear-gradient(rgba(10, 132, 255, 0.022) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(10, 132, 255, 0.022) 1px, transparent 1px);
+        linear-gradient(rgba(75, 122, 158, 0.012) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(75, 122, 158, 0.012) 1px, transparent 1px);
     background-size: 65px 65px;
     pointer-events: none;
     z-index: 0;
@@ -65,7 +65,7 @@ h1, h2, h3 {
 }
 
 #navbar.scrolled {
-    background: rgba(7, 7, 15, 0.93);
+    background: rgba(17, 17, 17, 0.93);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border-bottom-color: var(--accent-border);
@@ -128,7 +128,6 @@ h1, h2, h3 {
 .nav-cta:hover {
     background: var(--accent-dim);
     border-color: var(--accent) !important;
-    box-shadow: 0 0 18px var(--accent-glow);
 }
 
 .mobile-toggle {
@@ -190,8 +189,8 @@ h1, h2, h3 {
     position: absolute;
     inset: 0;
     background:
-        linear-gradient(90deg, rgba(7, 7, 15, 0.92) 0%, rgba(7, 7, 15, 0.55) 60%, rgba(7, 7, 15, 0.25) 100%),
-        linear-gradient(180deg, transparent 55%, rgba(7, 7, 15, 0.97) 100%);
+        linear-gradient(90deg, rgba(17, 17, 17, 0.92) 0%, rgba(17, 17, 17, 0.55) 60%, rgba(17, 17, 17, 0.25) 100%),
+        linear-gradient(180deg, transparent 55%, rgba(17, 17, 17, 0.97) 100%);
 }
 
 .hero-content {
@@ -261,7 +260,6 @@ h1, h2, h3 {
 .btn-primary:hover {
     background: var(--accent);
     color: var(--bg);
-    box-shadow: 0 0 28px var(--accent-glow), 0 0 55px rgba(10, 132, 255, 0.12);
 }
 
 .hero-btn {
@@ -299,7 +297,7 @@ h1, h2, h3 {
     display: flex;
     align-items: stretch;
     border-top: 1px solid var(--accent-border);
-    background: rgba(7, 7, 15, 0.72);
+    background: rgba(17, 17, 17, 0.72);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
 }
@@ -467,99 +465,89 @@ section {
 /* ============================================================
    SCIENCE / WHY IT MATTERS
    ============================================================ */
-.science-intro {
+.science-context {
     font-family: 'Rajdhani', sans-serif;
-    font-size: 1.1rem;
+    font-size: 1rem;
     line-height: 1.8;
     color: var(--text-muted);
-    max-width: 720px;
-    margin-bottom: 3.5rem;
+    max-width: 680px;
+    margin-bottom: 2.5rem;
     font-weight: 400;
     letter-spacing: 0.3px;
 }
 
-.science-stats {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-    margin-bottom: 3rem;
-}
-
-.science-stat {
+.ai-response {
+    max-width: 860px;
     border: 1px solid var(--accent-border);
-    border-top: 2px solid var(--accent);
-    padding: 2rem 1.75rem;
+    border-left: 2px solid var(--accent);
     background: var(--bg-card);
 }
 
-.big-num-wrap {
-    display: flex;
-    align-items: baseline;
-    gap: 0.1rem;
-    margin-bottom: 1rem;
-    line-height: 1;
-}
-
-.big-prefix,
-.big-num,
-.big-num.static {
+.ai-label {
+    padding: 0.7rem 1.5rem;
+    border-bottom: 1px solid var(--accent-border);
     font-family: 'Orbitron', monospace;
-    font-size: clamp(2rem, 4vw, 3rem);
-    font-weight: 700;
-    color: var(--accent);
-    line-height: 1;
-}
-
-.big-suffix {
-    font-family: 'Orbitron', monospace;
-    font-size: 1.3rem;
-    font-weight: 600;
-    color: var(--accent);
-    margin-left: 0.15rem;
-}
-
-.science-stat p {
-    font-family: 'Rajdhani', sans-serif;
-    font-size: 0.88rem;
-    line-height: 1.65;
-    color: var(--text-muted);
-    font-weight: 400;
-    letter-spacing: 0.3px;
-}
-
-.science-quote {
-    border-left: 2px solid var(--accent);
-    padding: 1.75rem 2rem;
-    margin: 0 0 2rem;
-    background: var(--accent-dim);
-    font-family: 'Rajdhani', sans-serif;
-    font-size: 1.02rem;
-    line-height: 1.8;
-    color: var(--text);
-    font-style: italic;
-    font-weight: 400;
-    letter-spacing: 0.3px;
-}
-
-.science-quote cite {
-    display: block;
-    margin-top: 1.25rem;
-    font-size: 0.65rem;
-    font-style: normal;
-    font-family: 'Orbitron', monospace;
+    font-size: 0.58rem;
     letter-spacing: 3px;
     color: var(--accent);
-    font-weight: 600;
+    text-transform: uppercase;
 }
 
-.science-note {
+.ai-body {
+    padding: 1.75rem 1.5rem;
+}
+
+.ai-body p {
     font-family: 'Rajdhani', sans-serif;
     font-size: 1rem;
-    line-height: 1.75;
-    color: var(--text-muted);
-    max-width: 720px;
+    line-height: 1.82;
+    color: var(--text);
     font-weight: 400;
     letter-spacing: 0.3px;
+    margin-bottom: 1.25rem;
+}
+
+.ai-body p:last-child {
+    margin-bottom: 0;
+}
+
+.ai-body sup {
+    font-size: 0.6rem;
+    color: var(--accent);
+    opacity: 0.75;
+    vertical-align: super;
+    margin-left: 1px;
+}
+
+.ai-sources {
+    padding: 1rem 1.5rem;
+    border-top: 1px solid var(--accent-border);
+}
+
+.sources-label {
+    font-family: 'Orbitron', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    display: block;
+    margin-bottom: 0.6rem;
+}
+
+.ai-sources ol {
+    padding-left: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.ai-sources li {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    line-height: 1.5;
+    letter-spacing: 0.3px;
+    font-weight: 400;
 }
 
 /* ============================================================
@@ -813,7 +801,6 @@ section {
 .form-group textarea:focus,
 .form-group select:focus {
     border-color: var(--accent);
-    box-shadow: 0 0 12px rgba(10, 132, 255, 0.18);
 }
 
 .form-btn {
