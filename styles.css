@@ -78,7 +78,8 @@ h1, h2, h3 {
     height: 64px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-end;
+    gap: 1rem;
 }
 
 .nav-logo {
@@ -104,7 +105,7 @@ h1, h2, h3 {
 }
 
 .nav-links a {
-    color: var(--text-muted);
+    color: #adadad;
     text-decoration: none;
     font-family: 'Rajdhani', sans-serif;
     font-size: 0.8rem;
@@ -115,7 +116,7 @@ h1, h2, h3 {
 }
 
 .nav-links a:hover {
-    color: var(--text);
+    color: #e8e8e8;
 }
 
 .nav-cta {
@@ -217,9 +218,9 @@ h1, h2, h3 {
 
 .hero-title {
     font-family: 'Orbitron', monospace;
-    font-size: clamp(2.6rem, 6vw, 5.8rem);
-    font-weight: 900;
-    line-height: 1.0;
+    font-size: clamp(2.2rem, 5vw, 4.6rem);
+    font-weight: 400;
+    line-height: 1.1;
     letter-spacing: 2px;
     color: var(--text);
     margin-bottom: 1.5rem;
@@ -287,52 +288,6 @@ h1, h2, h3 {
     border-color: var(--accent);
 }
 
-/* Hero stats bar */
-.hero-stats {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 2;
-    display: flex;
-    align-items: stretch;
-    border-top: 1px solid var(--accent-border);
-    background: rgba(17, 17, 17, 0.72);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-}
-
-.stat {
-    flex: 1;
-    padding: 1.2rem 2rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-}
-
-.stat-num {
-    font-family: 'Orbitron', monospace;
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: var(--accent);
-    letter-spacing: 1px;
-}
-
-.stat-label {
-    font-family: 'Rajdhani', sans-serif;
-    font-size: 0.68rem;
-    font-weight: 500;
-    letter-spacing: 2.5px;
-    text-transform: uppercase;
-    color: var(--text-muted);
-}
-
-.stat-divider {
-    width: 1px;
-    background: var(--accent-border);
-    margin: 0.8rem 0;
-    flex-shrink: 0;
-}
 
 /* ============================================================
    SHARED SECTION STYLES
@@ -620,6 +575,41 @@ section {
     font-weight: 400;
 }
 
+.process-details {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border: 1px solid var(--accent-border);
+    margin-top: 2rem;
+}
+
+.pd-item {
+    padding: 1.1rem 1.5rem;
+    border-right: 1px solid var(--accent-border);
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.pd-item:last-child {
+    border-right: none;
+}
+
+.pd-label {
+    font-family: 'Orbitron', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 3px;
+    color: var(--accent);
+    text-transform: uppercase;
+}
+
+.pd-val {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    font-weight: 400;
+    letter-spacing: 0.3px;
+}
+
 /* ============================================================
    ABOUT / PILOT
    ============================================================ */
@@ -832,10 +822,12 @@ footer {
 
 .footer-logo {
     font-family: 'Orbitron', monospace;
-    font-size: 0.82rem;
-    font-weight: 700;
-    letter-spacing: 4px;
-    color: var(--text);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 3px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    white-space: nowrap;
 }
 
 footer p {
@@ -987,12 +979,25 @@ footer p {
         grid-template-columns: 1fr;
     }
 
+    .process-details {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .pd-item:nth-child(2) {
+        border-right: none;
+    }
+
+    .pd-item:nth-child(3),
+    .pd-item:nth-child(4) {
+        border-top: 1px solid var(--accent-border);
+    }
+
     .section-inner {
         padding: 4rem 1.25rem;
     }
 
     .hero-title {
-        font-size: clamp(2rem, 10vw, 3.2rem);
+        font-size: clamp(1.8rem, 9vw, 3rem);
     }
 
     .footer-inner {
