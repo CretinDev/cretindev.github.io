@@ -1,117 +1,60 @@
-// Gallery page JavaScript
-
-// Randomize gallery on page load
-function shuffleGallery() {
-    const gallery = document.querySelector('.masonry-gallery');
-    const items = Array.from(gallery.children);
-
-    // Shuffle array using Fisher-Yates algorithm
-    for (let i = items.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [items[i], items[j]] = [items[j], items[i]];
-    }
-
-    // Clear gallery and re-append in random order
-    gallery.innerHTML = '';
-    items.forEach(item => gallery.appendChild(item));
-}
-
-// Add loaded class to images when they finish loading
-function handleImageLoad() {
-    const images = document.querySelectorAll('.gallery-item img');
-    images.forEach(img => {
-        if (img.complete) {
-            img.classList.add('loaded');
-        } else {
-            img.addEventListener('load', () => {
-                img.classList.add('loaded');
-            });
-        }
-    });
-}
-
-// Run shuffle when page loads
-window.addEventListener('DOMContentLoaded', () => {
-    shuffleGallery();
-    handleImageLoad();
+// Navbar scroll state
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 40);
 });
 
-// Navbar background on scroll - REMOVED to eliminate gradient overlay
-// const navbar = document.getElementById('navbar');
-//
-// window.addEventListener('scroll', () => {
-//     const currentScroll = window.pageYOffset;
-//
-//     // Add shadow when scrolled
-//     if (currentScroll > 50) {
-//         navbar.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.5)';
-//     } else {
-//         navbar.style.boxShadow = 'none';
-//     }
-// });
-
-// Mobile menu toggle functionality
-const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+// Mobile menu
+const mobileToggle = document.querySelector('.mobile-toggle');
 const navLinks = document.querySelector('.nav-links');
-
-if (mobileMenuToggle) {
-    mobileMenuToggle.addEventListener('click', () => {
-        navLinks.classList.toggle('active');
-        mobileMenuToggle.classList.toggle('active');
-    });
-}
-
-// Close mobile menu when clicking a link
+mobileToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('open');
+    mobileToggle.classList.toggle('active');
+});
 document.querySelectorAll('.nav-links a').forEach(link => {
     link.addEventListener('click', () => {
-        navLinks.classList.remove('active');
-        mobileMenuToggle.classList.remove('active');
+        navLinks.classList.remove('open');
+        mobileToggle.classList.remove('active');
     });
 });
 
-// Optional: Lightbox functionality for clicking on gallery items
-const galleryItems = document.querySelectorAll('.gallery-item');
-const lightbox = document.createElement('div');
-lightbox.className = 'lightbox';
-document.body.appendChild(lightbox);
-
-const lightboxClose = document.createElement('span');
-lightboxClose.className = 'lightbox-close';
-lightboxClose.innerHTML = '&times;';
-lightbox.appendChild(lightboxClose);
-
-galleryItems.forEach(item => {
-    const img = item.querySelector('img');
-    if (img) {
-        item.addEventListener('click', () => {
-            const imgClone = img.cloneNode(true);
-
-            // Remove any existing image in lightbox
-            const existingImg = lightbox.querySelector('img');
-            if (existingImg) {
-                existingImg.remove();
-            }
-
-            lightbox.appendChild(imgClone);
-            lightbox.classList.add('active');
-        });
-    }
+// Seek each thumbnail to a representative frame once metadata loads
+document.querySelectorAll('.thumb-preview video').forEach(v => {
+    v.addEventListener('loadedmetadata', () => {
+        v.currentTime = Math.min(3, v.duration * 0.08);
+    });
 });
 
-// Close lightbox
-lightboxClose.addEventListener('click', () => {
-    lightbox.classList.remove('active');
+// Main player elements
+const mainVideo   = document.getElementById('mainVideo');
+const placeholder = document.getElementById('playerPlaceholder');
+const titleEl     = document.getElementById('videoTitle');
+const catEl       = document.getElementById('videoCategory');
+
+function loadClip(item) {
+    document.querySelectorAll('.thumb-item').forEach(t => t.classList.remove('active'));
+    item.classList.add('active');
+
+    mainVideo.src = item.dataset.src;
+    mainVideo.style.display = 'block';
+    placeholder.style.display = 'none';
+    mainVideo.load();
+    mainVideo.play().catch(() => {});
+
+    titleEl.textContent = item.dataset.title    || '';
+    catEl.textContent   = item.dataset.category || '';
+}
+
+// Click on thumbnail strip
+document.getElementById('thumbStrip').addEventListener('click', e => {
+    const item = e.target.closest('.thumb-item');
+    if (item) loadClip(item);
 });
 
-lightbox.addEventListener('click', (e) => {
-    if (e.target === lightbox) {
-        lightbox.classList.remove('active');
-    }
-});
-
-// Close lightbox with Escape key
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-        lightbox.classList.remove('active');
-    }
+// Auto-advance to next clip when current one ends
+mainVideo.addEventListener('ended', () => {
+    const active  = document.querySelector('.thumb-item.active');
+    const all     = Array.from(document.querySelectorAll('.thumb-item'));
+    const nextIdx = (all.indexOf(active) + 1) % all.length;
+    loadClip(all[nextIdx]);
 });

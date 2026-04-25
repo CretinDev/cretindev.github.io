@@ -10,8 +10,8 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="gallery.css">
 </head>
-<body id="top">
-    <!-- Navigation Bar -->
+<body>
+
     <nav id="navbar">
         <div class="nav-inner">
             <ul class="nav-links">
@@ -27,148 +27,134 @@
         </div>
     </nav>
 
-    <!-- Gallery Section -->
     <section class="gallery-section">
-        <div class="gallery-container">
-            <h1>Gallery</h1>
-            <p class="gallery-intro">A collection of portraits, stereoscopic 3D film photography, and artistic work.</p>
+        <div class="gallery-inner">
 
-            <div class="masonry-gallery">
-                <div class="gallery-item">
-                    <img src="assets/gallery/000025540001.jpg" alt="Film Photography" loading="lazy">
-                </div>
-                <div class="gallery-item gallery-item-tall">
-                    <img src="assets/gallery/000025560018.jpg" alt="Portrait Photography" loading="lazy">
-                </div>
-                <div class="gallery-item">
-                    <img src="assets/gallery/000025560022.jpg" alt="Film Photography" loading="lazy">
-                </div>
-                <div class="gallery-item">
-                    <img src="assets/gallery/000025560028.jpg" alt="Artistic Photography" loading="lazy">
-                </div>
-                <div class="gallery-item gallery-item-wide">
-                    <img src="assets/gallery/000025560030.jpg" alt="Film Photography" loading="lazy">
-                </div>
-                <div class="gallery-item">
-                    <img src="assets/gallery/000025560031.jpg" alt="Portrait Photography" loading="lazy">
-                </div>
-                <div class="gallery-item gallery-item-tall">
-                    <img src="assets/gallery/000025560035.jpg" alt="Film Photography" loading="lazy">
-                </div>
-                <div class="gallery-item">
-                    <img src="assets/gallery/000038980005.jpg" alt="Artistic Photography" loading="lazy">
-                </div>
-                <div class="gallery-item">
-                    <img src="assets/gallery/000038980019.jpg" alt="Film Photography" loading="lazy">
-                </div>
-                <div class="gallery-item gallery-item-wide">
-                    <img src="assets/gallery/000064520010.jpg" alt="Portrait Photography" loading="lazy">
-                </div>
-                <div class="gallery-item">
-                    <img src="assets/gallery/000064520013.jpg" alt="Film Photography" loading="lazy">
-                </div>
-                <div class="gallery-item gallery-item-tall">
-                    <img src="assets/gallery/000064520014.jpg" alt="Artistic Photography" loading="lazy">
-                </div>
-                <div class="gallery-item">
-                    <img src="assets/gallery/000064520015.jpg" alt="Film Photography" loading="lazy">
-                </div>
-                <div class="gallery-item">
-                    <img src="assets/gallery/000064520016.jpg" alt="Portrait Photography" loading="lazy">
-                </div>
-                <div class="gallery-item">
-                    <img src="assets/gallery/000064520022.jpg" alt="Film Photography" loading="lazy">
-                </div>
-                <div class="gallery-item gallery-item-wide">
-                    <img src="assets/gallery/000064520030.jpg" alt="Artistic Photography" loading="lazy">
-                </div>
-                <div class="gallery-item">
-                    <img src="assets/gallery/000064520031.jpg" alt="Film Photography" loading="lazy">
-                </div>
-                <div class="gallery-item gallery-item-tall">
-                    <img src="assets/gallery/000099860003.jpg" alt="Portrait Photography" loading="lazy">
-                </div>
-                <div class="gallery-item">
-                    <img src="assets/gallery/000099860012.jpg" alt="Film Photography" loading="lazy">
-                </div>
-                <div class="gallery-item">
-                    <img src="assets/gallery/000099920028.jpg" alt="Artistic Photography" loading="lazy">
-                </div>
-                <div class="gallery-item">
-                    <img src="assets/gallery/000099930010.jpg" alt="Film Photography" loading="lazy">
-                </div>
-                <div class="gallery-item">
-                    <img src="assets/gallery/000099930017.jpg" alt="Portrait Photography" loading="lazy">
-                </div>
+            <div class="gallery-header">
+                <span class="section-tag">[ WORK ]</span>
+                <h1 class="gallery-title">AERIAL FOOTAGE</h1>
+            </div>
 
-                <!-- New images added -->
-                <div class="gallery-item">
-                    <img src="assets/gallery/000021510002.jpg" alt="Film Photography" loading="lazy">
+            <!-- Main player -->
+            <div class="main-player-wrap">
+                <div class="player-placeholder" id="playerPlaceholder">
+                    <span>SELECT A CLIP BELOW</span>
                 </div>
-                <div class="gallery-item gallery-item-tall">
-                    <img src="assets/gallery/000021510006.jpg" alt="Portrait Photography" loading="lazy">
-                </div>
-                <div class="gallery-item">
-                    <img src="assets/gallery/000021510007.jpg" alt="Film Photography" loading="lazy">
-                </div>
-                <div class="gallery-item">
-                    <img src="assets/gallery/000021510008.jpg" alt="Artistic Photography" loading="lazy">
-                </div>
-                <div class="gallery-item">
-                    <img src="assets/gallery/000021510014.jpg" alt="Film Photography" loading="lazy">
-                </div>
-                <div class="gallery-item gallery-item-wide">
-                    <img src="assets/gallery/000021510017 (1).jpg" alt="Portrait Photography" loading="lazy">
-                </div>
-                <div class="gallery-item">
-                    <img src="assets/gallery/000021510024.jpg" alt="Film Photography" loading="lazy">
-                </div>
-                <div class="gallery-item">
-                    <img src="assets/gallery/000025580019.jpg" alt="Artistic Photography" loading="lazy">
-                </div>
-                <div class="gallery-item">
-                    <img src="assets/gallery/000025580025.jpg" alt="Film Photography" loading="lazy">
-                </div>
-                <div class="gallery-item gallery-item-tall">
-                    <img src="assets/gallery/000025580031.jpg" alt="Portrait Photography" loading="lazy">
-                </div>
-                <div class="gallery-item">
-                    <img src="assets/gallery/000026420013.jpg" alt="Film Photography" loading="lazy">
-                </div>
-                <div class="gallery-item">
-                    <img src="assets/gallery/000027250004.jpg" alt="Artistic Photography" loading="lazy">
-                </div>
-                <div class="gallery-item">
-                    <img src="assets/gallery/000027260014.jpg" alt="Film Photography" loading="lazy">
-                </div>
+                <video id="mainVideo" controls playsinline></video>
+            </div>
 
-                <!-- Stereoscopic 3D GIFs -->
-                <div class="gallery-item gallery-item-wide">
-                    <img src="assets/gallery/BeachRidev2-ezgif.com-resize.gif" alt="Stereoscopic 3D Photography" loading="lazy">
-                </div>
-                <div class="gallery-item gallery-item-tall">
-                    <img src="assets/gallery/ChristinaTest-ezgif.com-resize.gif" alt="Stereoscopic 3D Photography" loading="lazy">
-                </div>
-                <div class="gallery-item">
-                    <img src="assets/gallery/CrystalStoreV2-ezgif.com-resize.gif" alt="Stereoscopic 3D Photography" loading="lazy">
-                </div>
-                <div class="gallery-item gallery-item-wide">
-                    <img src="assets/gallery/Gang-ezgif.com-resize.gif" alt="Stereoscopic 3D Photography" loading="lazy">
-                </div>
-                <div class="gallery-item">
-                    <img src="assets/gallery/GraceRob3-ezgif.com-resize.gif" alt="Stereoscopic 3D Photography" loading="lazy">
-                </div>
-                <div class="gallery-item gallery-item-tall">
-                    <img src="assets/gallery/GraceRobTest-ezgif.com-resize.gif" alt="Stereoscopic 3D Photography" loading="lazy">
-                </div>
-                <div class="gallery-item">
-                    <img src="assets/gallery/Schy-ezgif.com-resize.gif" alt="Stereoscopic 3D Photography" loading="lazy">
+            <!-- Player info bar -->
+            <div class="player-meta">
+                <span id="videoTitle" class="video-meta-title"></span>
+                <span id="videoCategory" class="video-meta-cat"></span>
+            </div>
+
+            <!-- Thumbnail strip -->
+            <div class="thumb-strip-outer">
+                <div class="thumb-strip" id="thumbStrip">
+
+                    <div class="thumb-item" data-src="assets/broad-1.mp4" data-title="Broad Survey I" data-category="Aerial">
+                        <div class="thumb-preview">
+                            <video muted preload="metadata"><source src="assets/broad-1.mp4" type="video/mp4"></video>
+                            <div class="thumb-play">&#9654;</div>
+                        </div>
+                        <div class="thumb-label">Broad Survey I</div>
+                    </div>
+
+                    <div class="thumb-item" data-src="assets/broad-3.mp4" data-title="Broad Survey II" data-category="Aerial">
+                        <div class="thumb-preview">
+                            <video muted preload="metadata"><source src="assets/broad-3.mp4" type="video/mp4"></video>
+                            <div class="thumb-play">&#9654;</div>
+                        </div>
+                        <div class="thumb-label">Broad Survey II</div>
+                    </div>
+
+                    <div class="thumb-item" data-src="assets/Broad-4.mp4" data-title="Broad Survey III" data-category="Aerial">
+                        <div class="thumb-preview">
+                            <video muted preload="metadata"><source src="assets/Broad-4.mp4" type="video/mp4"></video>
+                            <div class="thumb-play">&#9654;</div>
+                        </div>
+                        <div class="thumb-label">Broad Survey III</div>
+                    </div>
+
+                    <div class="thumb-item" data-src="assets/Broad-5.mp4" data-title="Broad Survey IV" data-category="Aerial">
+                        <div class="thumb-preview">
+                            <video muted preload="metadata"><source src="assets/Broad-5.mp4" type="video/mp4"></video>
+                            <div class="thumb-play">&#9654;</div>
+                        </div>
+                        <div class="thumb-label">Broad Survey IV</div>
+                    </div>
+
+                    <div class="thumb-item" data-src="assets/Broad-6.mp4" data-title="Broad Survey V" data-category="Aerial">
+                        <div class="thumb-preview">
+                            <video muted preload="metadata"><source src="assets/Broad-6.mp4" type="video/mp4"></video>
+                            <div class="thumb-play">&#9654;</div>
+                        </div>
+                        <div class="thumb-label">Broad Survey V</div>
+                    </div>
+
+                    <div class="thumb-item" data-src="assets/Commercial-2.mp4" data-title="Commercial Survey" data-category="Commercial">
+                        <div class="thumb-preview">
+                            <video muted preload="metadata"><source src="assets/Commercial-2.mp4" type="video/mp4"></video>
+                            <div class="thumb-play">&#9654;</div>
+                        </div>
+                        <div class="thumb-label">Commercial Survey</div>
+                    </div>
+
+                    <div class="thumb-item" data-src="assets/Tourism-1.mp4" data-title="Nipissing Region I" data-category="Aerial">
+                        <div class="thumb-preview">
+                            <video muted preload="metadata"><source src="assets/Tourism-1.mp4" type="video/mp4"></video>
+                            <div class="thumb-play">&#9654;</div>
+                        </div>
+                        <div class="thumb-label">Nipissing Region I</div>
+                    </div>
+
+                    <div class="thumb-item" data-src="assets/Tourism-2.mp4" data-title="Nipissing Region II" data-category="Aerial">
+                        <div class="thumb-preview">
+                            <video muted preload="metadata"><source src="assets/Tourism-2.mp4" type="video/mp4"></video>
+                            <div class="thumb-play">&#9654;</div>
+                        </div>
+                        <div class="thumb-label">Nipissing Region II</div>
+                    </div>
+
+                    <div class="thumb-item" data-src="assets/Tourism-3.mp4" data-title="Nipissing Region III" data-category="Aerial">
+                        <div class="thumb-preview">
+                            <video muted preload="metadata"><source src="assets/Tourism-3.mp4" type="video/mp4"></video>
+                            <div class="thumb-play">&#9654;</div>
+                        </div>
+                        <div class="thumb-label">Nipissing Region III</div>
+                    </div>
+
+                    <div class="thumb-item" data-src="assets/Tourism-4.mp4" data-title="Nipissing Region IV" data-category="Aerial">
+                        <div class="thumb-preview">
+                            <video muted preload="metadata"><source src="assets/Tourism-4.mp4" type="video/mp4"></video>
+                            <div class="thumb-play">&#9654;</div>
+                        </div>
+                        <div class="thumb-label">Nipissing Region IV</div>
+                    </div>
+
+                    <div class="thumb-item" data-src="assets/Tourism-5.mp4" data-title="Nipissing Region V" data-category="Aerial">
+                        <div class="thumb-preview">
+                            <video muted preload="metadata"><source src="assets/Tourism-5.mp4" type="video/mp4"></video>
+                            <div class="thumb-play">&#9654;</div>
+                        </div>
+                        <div class="thumb-label">Nipissing Region V</div>
+                    </div>
+
+                    <div class="thumb-item" data-src="assets/Broad-Tourism-1.mp4" data-title="Nipissing Region VI" data-category="Aerial">
+                        <div class="thumb-preview">
+                            <video muted preload="metadata"><source src="assets/Broad-Tourism-1.mp4" type="video/mp4"></video>
+                            <div class="thumb-play">&#9654;</div>
+                        </div>
+                        <div class="thumb-label">Nipissing Region VI</div>
+                    </div>
+
                 </div>
             </div>
+
         </div>
     </section>
 
-    <!-- Footer -->
     <footer>
         <div class="footer-inner">
             <span class="footer-logo">Northern Aerial Drone Surveys</span>
