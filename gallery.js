@@ -51,6 +51,13 @@ document.getElementById('thumbStrip').addEventListener('click', e => {
     if (item) loadClip(item);
 });
 
+// Wheel over thumbnail strip scrolls horizontally
+const thumbOuter = document.querySelector('.thumb-strip-outer');
+thumbOuter.addEventListener('wheel', (e) => {
+    e.preventDefault();
+    thumbOuter.scrollLeft += e.deltaY + e.deltaX;
+}, { passive: false });
+
 // Auto-advance to next clip when current one ends
 mainVideo.addEventListener('ended', () => {
     const active  = document.querySelector('.thumb-item.active');
