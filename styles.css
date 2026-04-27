@@ -550,7 +550,7 @@ section {
 
 .process-details {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     border: 1px solid var(--accent-border);
     border-radius: 4px;
     overflow: hidden;
