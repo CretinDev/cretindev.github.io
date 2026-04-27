@@ -114,19 +114,34 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Contact form: simple feedback state
+// Contact form: submit to Formspree
 const contactForm = document.getElementById('contactForm');
 if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
+    contactForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         const btn = contactForm.querySelector('.form-btn');
-        const original = btn.textContent;
-        btn.textContent = 'SENT —';
+        btn.textContent = 'SENDING...';
         btn.style.pointerEvents = 'none';
-        setTimeout(() => {
-            btn.textContent = original;
+        try {
+            const res = await fetch(contactForm.action, {
+                method: 'POST',
+                body: new FormData(contactForm),
+                headers: { 'Accept': 'application/json' }
+            });
+            if (res.ok) {
+                btn.textContent = 'SENT —';
+                contactForm.reset();
+            } else {
+                btn.textContent = 'ERROR — TRY AGAIN';
+                btn.style.pointerEvents = '';
+            }
+        } catch {
+            btn.textContent = 'ERROR — TRY AGAIN';
             btn.style.pointerEvents = '';
-            contactForm.reset();
+        }
+        setTimeout(() => {
+            btn.textContent = 'SEND REQUEST';
+            btn.style.pointerEvents = '';
         }, 3000);
     });
 }
