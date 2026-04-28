@@ -10,10 +10,8 @@ const heroRest = [
     'assets/Industrial/industrial-1.mp4',
     'assets/Industrial/industrial-2.mp4',
     'assets/Industrial/industrial-3.mp4',
-    'assets/Tourism/Broad-Tourism-1.mp4',
     'assets/Tourism/Fall-1.mp4',
     'assets/Tourism/Summer-1.mp4',
-    'assets/Tourism/Tourism-5.mp4',
 ];
 
 function shuffleArr(arr) {
