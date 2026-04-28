@@ -33,23 +33,56 @@ function buildHeroPlaylist() {
 
 let heroPlaylist = buildHeroPlaylist();
 let heroIndex = 0;
-const heroBg = document.querySelector('.hero-bg-video');
 
-function playHeroVideo(index) {
-    heroBg.src = heroPlaylist[index];
-    heroBg.load();
-    heroBg.play().catch(() => {});
-}
+const vidA = document.getElementById('heroBgA');
+const vidB = document.getElementById('heroBgB');
+let activeVid = vidA;
+let nextVid = vidB;
+let crossfading = false;
 
-playHeroVideo(heroIndex);
-
-heroBg.addEventListener('ended', () => {
+function advanceIndex() {
     heroIndex++;
     if (heroIndex >= heroPlaylist.length) {
         heroPlaylist = buildHeroPlaylist();
         heroIndex = 0;
     }
-    playHeroVideo(heroIndex);
+}
+
+function doCrossfade() {
+    if (crossfading) return;
+    crossfading = true;
+    nextVid.play().catch(() => {});
+    nextVid.classList.add('active');
+    activeVid.classList.remove('active');
+    setTimeout(() => {
+        const tmp = activeVid;
+        activeVid = nextVid;
+        nextVid = tmp;
+        nextVid.pause();
+        crossfading = false;
+        advanceIndex();
+        nextVid.src = heroPlaylist[heroIndex];
+        nextVid.load();
+    }, 1200);
+}
+
+// Start first video
+vidA.src = heroPlaylist[heroIndex];
+vidA.load();
+vidA.classList.add('active');
+vidA.play().catch(() => {});
+
+// Preload second video
+advanceIndex();
+vidB.src = heroPlaylist[heroIndex];
+vidB.load();
+
+// Trigger crossfade 1.5s before each clip ends
+[vidA, vidB].forEach(v => {
+    v.addEventListener('timeupdate', () => {
+        if (v !== activeVid || crossfading || !v.duration) return;
+        if (v.duration - v.currentTime <= 1.5) doCrossfade();
+    });
 });
 
 // Navbar: transparent at top, frosted glass on scroll
