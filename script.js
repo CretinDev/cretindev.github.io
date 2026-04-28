@@ -1,20 +1,18 @@
 // Hero background video cycling — residential first, then shuffled rest
-const heroFirst = 'assets/Residential/Sequence 01.mp4';
+const heroFirst = 'assets/Residential/Sequence 02.mp4';
 
 const heroRest = [
     'assets/Commercial/commercial-1.mp4',
     'assets/Commercial/Commercial-2.mp4',
-    'assets/Commercial/Commercial_WaterDamage.mp4',
-    'assets/Commercial/Commercial_WaterDamage2.mp4',
-    'assets/Commercial/Commercial_WaterDamage3.mp4',
+    'assets/Commercial/CommrecialWaterDamage1.mp4',
+    'assets/Commercial/CommrecialWaterDamage2.mp4',
+    'assets/Commercial/CommrecialWaterDamage3.mp4',
     'assets/Industrial/industrial-1.mp4',
     'assets/Industrial/industrial-2.mp4',
     'assets/Industrial/industrial-3.mp4',
-    'assets/Random/broad-1.mp4',
-    'assets/Random/broad-3.mp4',
-    'assets/Random/Broad-4.mp4',
-    'assets/Random/Broad-5.mp4',
     'assets/Tourism/Broad-Tourism-1.mp4',
+    'assets/Tourism/Fall-1.mp4',
+    'assets/Tourism/Summer-1.mp4',
     'assets/Tourism/Tourism-5.mp4',
 ];
 

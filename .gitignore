@@ -3,5 +3,6 @@
 # Temporary Claude Code session files
 tmpclaude-*
 
-# Old/unused gallery assets - kept locally for reference, not part of the site
+# Old/unused assets - kept locally for reference, not part of the site
 assets/gallery-NotInUse/
+assets/Videos-NotInUse/
