@@ -437,14 +437,16 @@ section {
     font-family: 'Orbitron', monospace;
     font-size: 3rem;
     font-weight: 700;
-    color: rgba(10, 132, 255, 0.08);
+    color: rgba(75, 122, 158, 0.5);
     line-height: 1;
     margin-bottom: 1.25rem;
-    transition: color 0.25s ease;
+    transition: color 0.25s ease, text-shadow 0.25s ease;
+    text-shadow: 0 0 18px rgba(75, 122, 158, 0.4);
 }
 
 .service-card:hover .card-num {
-    color: rgba(10, 132, 255, 0.2);
+    color: rgba(75, 122, 158, 0.75);
+    text-shadow: 0 0 24px rgba(75, 122, 158, 0.6);
 }
 
 .service-card h3 {
