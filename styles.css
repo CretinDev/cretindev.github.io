@@ -441,12 +441,12 @@ section {
     line-height: 1;
     margin-bottom: 1.25rem;
     transition: color 0.25s ease, text-shadow 0.25s ease;
-    text-shadow: 0 0 18px rgba(75, 122, 158, 0.4);
+    text-shadow: 0 0 8px rgba(140, 200, 255, 0.75);
 }
 
 .service-card:hover .card-num {
     color: rgba(75, 122, 158, 0.75);
-    text-shadow: 0 0 24px rgba(75, 122, 158, 0.6);
+    text-shadow: 0 0 10px rgba(140, 200, 255, 0.95);
 }
 
 .service-card h3 {
