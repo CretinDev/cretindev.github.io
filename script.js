@@ -53,19 +53,32 @@ function advanceIndex() {
 function doCrossfade() {
     if (crossfading) return;
     crossfading = true;
-    nextVid.play().catch(() => {});
-    nextVid.classList.add('active');
-    activeVid.classList.remove('active');
-    setTimeout(() => {
-        const tmp = activeVid;
-        activeVid = nextVid;
-        nextVid = tmp;
-        nextVid.pause();
-        crossfading = false;
-        advanceIndex();
-        nextVid.src = heroPlaylist[heroIndex];
-        nextVid.load();
-    }, 1200);
+
+    const startFade = () => {
+        nextVid.classList.add('active');
+        activeVid.classList.remove('active');
+        setTimeout(() => {
+            const tmp = activeVid;
+            activeVid = nextVid;
+            nextVid = tmp;
+            nextVid.pause();
+            crossfading = false;
+            advanceIndex();
+            nextVid.src = heroPlaylist[heroIndex];
+            nextVid.load();
+        }, 1200);
+    };
+
+    // If already buffered enough, fade immediately — otherwise wait until ready
+    if (nextVid.readyState >= 3) {
+        nextVid.play().catch(() => {});
+        startFade();
+    } else {
+        nextVid.addEventListener('canplay', () => {
+            nextVid.play().catch(() => {});
+            startFade();
+        }, { once: true });
+    }
 }
 
 // Start first video
@@ -83,7 +96,7 @@ vidB.load();
 [vidA, vidB].forEach(v => {
     v.addEventListener('timeupdate', () => {
         if (v !== activeVid || crossfading || !v.duration) return;
-        if (v.duration - v.currentTime <= 1.5) doCrossfade();
+        if (v.duration - v.currentTime <= 3) doCrossfade();
     });
 });
 
