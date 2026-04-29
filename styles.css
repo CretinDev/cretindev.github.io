@@ -187,12 +187,16 @@ h1, h2, h3 {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    opacity: 0;
-    transition: opacity 1s ease;
 }
 
-.hero-bg-video.active {
-    opacity: 1;
+.hero-fade-layer {
+    position: absolute;
+    inset: 0;
+    background: #111111;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+    z-index: 1;
 }
 
 .hero-overlay {

@@ -9,7 +9,6 @@ const heroOpeners = [
 const heroWork = [
     'assets/Residential/Sequence 02.mp4',
     'assets/Commercial/commercial-1.mp4',
-    'assets/Commercial/Commercial-2.mp4',
     'assets/Commercial/CommrecialWaterDamage1.mp4',
     'assets/Commercial/CommrecialWaterDamage2.mp4',
     'assets/Commercial/CommrecialWaterDamage3.mp4',
@@ -35,12 +34,10 @@ function buildHeroPlaylist() {
 
 let heroPlaylist = buildHeroPlaylist();
 let heroIndex = 0;
+let transitioning = false;
 
-const vidA = document.getElementById('heroBgA');
-const vidB = document.getElementById('heroBgB');
-let activeVid = vidA;
-let nextVid = vidB;
-let crossfading = false;
+const heroBg = document.getElementById('heroBg');
+const heroFade = document.getElementById('heroFade');
 
 function advanceIndex() {
     heroIndex++;
@@ -50,54 +47,49 @@ function advanceIndex() {
     }
 }
 
-function doCrossfade() {
-    if (crossfading) return;
-    crossfading = true;
-
-    const startFade = () => {
-        nextVid.classList.add('active');
-        activeVid.classList.remove('active');
-        setTimeout(() => {
-            const tmp = activeVid;
-            activeVid = nextVid;
-            nextVid = tmp;
-            nextVid.pause();
-            crossfading = false;
-            advanceIndex();
-            nextVid.src = heroPlaylist[heroIndex];
-            nextVid.load();
-        }, 1200);
-    };
-
-    // If already buffered enough, fade immediately — otherwise wait until ready
-    if (nextVid.readyState >= 3) {
-        nextVid.play().catch(() => {});
-        startFade();
-    } else {
-        nextVid.addEventListener('canplay', () => {
-            nextVid.play().catch(() => {});
-            startFade();
-        }, { once: true });
-    }
+function playClip(src) {
+    heroBg.src = src;
+    heroBg.load();
+    heroBg.addEventListener('canplay', () => {
+        heroBg.play().catch(() => {});
+    }, { once: true });
+    heroBg.addEventListener('error', () => {
+        advanceIndex();
+        doTransition();
+    }, { once: true });
 }
 
-// Start first video
-vidA.src = heroPlaylist[heroIndex];
-vidA.load();
-vidA.classList.add('active');
-vidA.play().catch(() => {});
+function doTransition() {
+    if (transitioning) return;
+    transitioning = true;
 
-// Preload second video
-advanceIndex();
-vidB.src = heroPlaylist[heroIndex];
-vidB.load();
+    heroFade.style.opacity = '1';
 
-// Trigger crossfade 1.5s before each clip ends
-[vidA, vidB].forEach(v => {
-    v.addEventListener('timeupdate', () => {
-        if (v !== activeVid || crossfading || !v.duration) return;
-        if (v.duration - v.currentTime <= 3) doCrossfade();
-    });
+    setTimeout(() => {
+        advanceIndex();
+        playClip(heroPlaylist[heroIndex]);
+
+        let fadedBack = false;
+        const fadeBack = () => {
+            if (fadedBack) return;
+            fadedBack = true;
+            heroFade.style.opacity = '0';
+            transitioning = false;
+        };
+        heroBg.addEventListener('canplay', fadeBack, { once: true });
+        setTimeout(fadeBack, 2000);
+    }, 500);
+}
+
+playClip(heroPlaylist[heroIndex]);
+
+heroBg.addEventListener('timeupdate', () => {
+    if (transitioning || !heroBg.duration) return;
+    if (heroBg.duration - heroBg.currentTime <= 3) doTransition();
+});
+
+heroBg.addEventListener('ended', () => {
+    if (!transitioning) doTransition();
 });
 
 // Navbar: transparent at top, frosted glass on scroll
