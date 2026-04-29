@@ -277,23 +277,20 @@ h1, h2, h3 {
     text-transform: uppercase;
 }
 
-.hero-phone {
-    display: block;
-    font-family: 'Orbitron', monospace;
-    font-size: clamp(1.2rem, 2.5vw, 1.9rem);
+.contact-phone {
+    display: inline-block;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1.5rem;
     font-weight: 600;
-    color: var(--accent);
+    color: #ffffff;
     text-decoration: none;
-    letter-spacing: 3px;
-    margin-bottom: 2rem;
-    opacity: 0;
-    animation: fadeSlideUp 0.8s ease forwards;
-    animation-delay: 0.95s;
+    letter-spacing: 2px;
+    margin-top: 0.75rem;
     transition: color 0.2s ease;
 }
 
-.hero-phone:hover {
-    color: var(--text);
+.contact-phone:hover {
+    color: var(--accent);
 }
 
 .btn-primary {
