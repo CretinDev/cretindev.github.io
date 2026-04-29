@@ -18,11 +18,6 @@ const heroWork = [
     'assets/Industrial/industrial-3.mp4',
 ];
 
-const heroTourism = [
-    'assets/Tourism/Fall-1.mp4',
-    'assets/Tourism/Summer-1.mp4',
-];
-
 function shuffleArr(arr) {
     const a = [...arr];
     for (let i = a.length - 1; i > 0; i--) {
@@ -33,23 +28,9 @@ function shuffleArr(arr) {
 }
 
 function buildHeroPlaylist() {
-    // Pick opener from residential/water damage pool
     const opener = heroOpeners[Math.floor(Math.random() * heroOpeners.length)];
-    // Shuffle work clips, excluding the opener to avoid immediate repeat
-    const work = shuffleArr(heroWork.filter(v => v !== opener));
-    const tourism = shuffleArr([...heroTourism]);
-    const list = [opener];
-    let wi = 0, ti = 0;
-    while (wi < work.length) {
-        // Play 2 or 3 work clips before each tourism clip
-        const run = 2 + Math.floor(Math.random() * 2);
-        for (let i = 0; i < run && wi < work.length; i++) list.push(work[wi++]);
-        if (tourism.length > 0) {
-            list.push(tourism[ti % tourism.length]);
-            ti++;
-        }
-    }
-    return list;
+    const rest = shuffleArr(heroWork.filter(v => v !== opener));
+    return [opener, ...rest];
 }
 
 let heroPlaylist = buildHeroPlaylist();
