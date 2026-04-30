@@ -1,35 +1,5 @@
-// Hero video cycling — opens with residential/water damage, tourism only after 2-3 work clips
-const heroOpeners = [
-    'assets/Residential/Sequence 02.mp4',
-    'assets/Commercial/CommrecialWaterDamage1.mp4',
-    'assets/Commercial/CommrecialWaterDamage2.mp4',
-    'assets/Commercial/CommrecialWaterDamage3.mp4',
-];
-
-const heroWork = [
-    'assets/Residential/Sequence 02.mp4',
-    'assets/Commercial/commercial-1.mp4',
-    'assets/Commercial/CommrecialWaterDamage1.mp4',
-    'assets/Commercial/CommrecialWaterDamage2.mp4',
-    'assets/Commercial/CommrecialWaterDamage3.mp4',
-    'assets/Industrial/industrial-1.mp4',
-    'assets/Industrial/industrial-2.mp4',
-    'assets/Industrial/industrial-3.mp4',
-];
-
-function shuffleArr(arr) {
-    const a = [...arr];
-    for (let i = a.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [a[i], a[j]] = [a[j], a[i]];
-    }
-    return a;
-}
-
 function buildHeroPlaylist() {
-    const opener = heroOpeners[Math.floor(Math.random() * heroOpeners.length)];
-    const rest = shuffleArr(heroWork.filter(v => v !== opener));
-    return [opener, ...rest];
+    return ['assets/Residential/Sequence 02.mp4'];
 }
 
 let heroPlaylist = buildHeroPlaylist();
