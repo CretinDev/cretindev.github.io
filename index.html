@@ -42,39 +42,78 @@
             </div>
             <a href="#contact" class="btn-primary hero-btn">BOOK A SURVEY</a>
         </div>
+        <div class="hero-bottom-label">
+            <span class="section-tag">[ SERVICE APPLICATIONS ]</span>
+            <h2>WHAT WE DOCUMENT</h2>
+        </div>
     </section>
 
     <!-- Services -->
     <section id="services">
         <div class="section-inner">
             <div class="section-header reveal">
-                <span class="section-tag">[ SERVICE TYPES ]</span>
+                <span class="section-tag">[ SERVICE APPLICATIONS ]</span>
                 <h2>WHAT WE DOCUMENT</h2>
             </div>
-            <div class="services-grid">
-                <div class="service-card reveal">
-                    <span class="card-num">01</span>
-                    <h3>Residential Property Survey</h3>
-                    <p>Bird's-eye condition analysis. Roof state, lot boundaries, drainage paths, and surrounding property context — captured and handed over the same day.</p>
-                    <div class="card-tag">RESIDENTIAL</div>
+            <div class="sector-explorer reveal">
+                <div class="sector-left">
+                    <div class="sector-tabs">
+                        <button class="sector-tab active" data-sector="residential">
+                            <span class="tab-num">01</span>
+                            <span class="tab-label">Residential</span>
+                            <span class="tab-arrow">&#8594;</span>
+                        </button>
+                        <button class="sector-tab" data-sector="commercial">
+                            <span class="tab-num">02</span>
+                            <span class="tab-label">Commercial</span>
+                            <span class="tab-arrow">&#8594;</span>
+                        </button>
+                        <button class="sector-tab" data-sector="industrial">
+                            <span class="tab-num">03</span>
+                            <span class="tab-label">Industrial</span>
+                            <span class="tab-arrow">&#8594;</span>
+                        </button>
+                        <button class="sector-tab" data-sector="legal">
+                            <span class="tab-num">04</span>
+                            <span class="tab-label">Legal &amp; Regulatory</span>
+                            <span class="tab-arrow">&#8594;</span>
+                        </button>
+                    </div>
+
+                    <div class="sector-info open" id="sectorInfo">
+                        <div class="sector-info-panel active" id="info-residential">
+                            <div class="sector-panel-tag">RESIDENTIAL</div>
+                            <h3>Property Surveys &amp; Home Documentation</h3>
+                            <p>Roof state, lot boundaries, drainage paths, and full exterior condition — captured from above and delivered the same day. Useful before a purchase, before renovation starts, or any time you need a clear record of what a property looks like right now.</p>
+                            <a href="residential.html" class="btn-primary sector-explore-btn">EXPLORE RESIDENTIAL &#8594;</a>
+                        </div>
+                        <div class="sector-info-panel" id="info-commercial">
+                            <div class="sector-panel-tag">COMMERCIAL</div>
+                            <h3>Commercial Building &amp; Flat Roof Documentation</h3>
+                            <p>Standing water, drainage failure, membrane deterioration — documented from above after rainfall or weather events. Flat roofs accumulate damage that's invisible from the ground. Aerial footage makes the condition visible and on-record before it compounds.</p>
+                            <a href="commercial.html" class="btn-primary sector-explore-btn">EXPLORE COMMERCIAL &#8594;</a>
+                        </div>
+                        <div class="sector-info-panel" id="info-industrial">
+                            <div class="sector-panel-tag">INDUSTRIAL</div>
+                            <h3>Site Progression &amp; Industrial Documentation</h3>
+                            <p>Multi-stage aerial records for active construction and industrial sites. Visual progress updates for contractors, project managers, and stakeholders — no on-site visit required. Each shoot adds a timestamped layer to a growing site record.</p>
+                            <a href="industrial.html" class="btn-primary sector-explore-btn">EXPLORE INDUSTRIAL &#8594;</a>
+                        </div>
+                        <div class="sector-info-panel" id="info-legal">
+                            <div class="sector-panel-tag">LEGAL &amp; REGULATORY</div>
+                            <h3>Evidence Documentation &amp; Regulatory Compliance</h3>
+                            <p>Timestamped, unedited aerial footage for insurance adjusters, legal teams, mortgage lenders, and regulatory bodies. Visual documentation of site conditions before and after incidents — discreet, precise, and delivered the same day it's captured.</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="service-card reveal">
-                    <span class="card-num">02</span>
-                    <h3>Pre-Renovation Documentation</h3>
-                    <p>Aerial liability baseline before construction begins. A clear aerial record of existing conditions protects property owners, contractors, and insurers alike.</p>
-                    <div class="card-tag">LIABILITY</div>
-                </div>
-                <div class="service-card reveal">
-                    <span class="card-num">03</span>
-                    <h3>Commercial Flat Roof</h3>
-                    <p>Post-rainfall pool detection. Standing water, drainage failure, membrane deterioration, and moss growth — documented from above before damage compounds.</p>
-                    <div class="card-tag">HIGH VALUE</div>
-                </div>
-                <div class="service-card reveal">
-                    <span class="card-num">04</span>
-                    <h3>Industrial Progression</h3>
-                    <p>Multi-stage aerial records for active construction and industrial sites. Visual progress updates for contractors, stakeholders, and project management teams.</p>
-                    <div class="card-tag">CONTRACTED</div>
+
+                <div class="sector-video-column">
+                    <div class="sector-video-wrap">
+                        <video class="sector-video" id="sectorVideoA" muted playsinline loop preload="auto">
+                            <source src="assets/Residential/Sequence 02.mp4" type="video/mp4">
+                        </video>
+                        <video class="sector-video" id="sectorVideoB" muted playsinline loop preload="none" style="opacity:0"></video>
+                    </div>
                 </div>
             </div>
         </div>
