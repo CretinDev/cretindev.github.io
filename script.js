@@ -1,5 +1,21 @@
 function buildHeroPlaylist() {
-    return ['assets/Residential/Sequence 02.mp4'];
+    const tail = [
+        'assets/Residential/szarka.mp4',
+        'assets/Residential/1130D.1080.fade.mp4',
+        'assets/Residential/204B.1080.fade.mp4',
+        'assets/Commercial/CommrecialWaterDamage1.mp4',
+        'assets/Industrial/industrial-1.mp4',
+    ];
+    // Fisher-Yates shuffle
+    for (let i = tail.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [tail[i], tail[j]] = [tail[j], tail[i]];
+    }
+    return [
+        'assets/Residential/Sequence 02.mp4',  // always first
+        'assets/Residential/D956.1080.fade.mp4', // always second
+        ...tail,
+    ];
 }
 
 let heroPlaylist = buildHeroPlaylist();
@@ -55,7 +71,7 @@ playClip(heroPlaylist[heroIndex]);
 
 heroBg.addEventListener('timeupdate', () => {
     if (transitioning || !heroBg.duration) return;
-    if (heroBg.duration - heroBg.currentTime <= 3) doTransition();
+    if (heroBg.duration - heroBg.currentTime <= 1.5) doTransition();
 });
 
 heroBg.addEventListener('ended', () => {
@@ -178,18 +194,33 @@ const sectorInfo       = document.getElementById('sectorInfo');
 const sectorVideoA     = document.getElementById('sectorVideoA');
 const sectorVideoB     = document.getElementById('sectorVideoB');
 
+// Arrays = random pick per click; strings = fixed clip
 const sectorSources = {
-    residential: 'assets/Residential/Sequence 02.mp4',
+    // Sequence 02 is reserved for the hero — pick randomly from the rest
+    residential: [
+        'assets/Residential/D956.1080.fade.mp4',
+        'assets/Residential/szarka.mp4',
+        'assets/Residential/1130D.1080.fade.mp4',
+        'assets/Residential/204B.1080.fade.mp4',
+    ],
     commercial:  'assets/Commercial/CommrecialWaterDamage1.mp4',
     industrial:  'assets/Industrial/industrial-1.mp4',
-    legal:       'assets/Commercial/CommrecialWaterDamage2.mp4'
+    legal:       'assets/Commercial/CommrecialWaterDamage2.mp4',
 };
+
+function pickSrc(sector) {
+    const entry = sectorSources[sector];
+    return Array.isArray(entry)
+        ? entry[Math.floor(Math.random() * entry.length)]
+        : entry || '';
+}
 
 if (sectorTabs.length && sectorInfo && sectorVideoA) {
     // A is front (visible), B is back (loading)
     let frontVideo = sectorVideoA;
     let backVideo  = sectorVideoB;
 
+    frontVideo.src = pickSrc('residential');
     frontVideo.load();
     frontVideo.play().catch(() => {});
 
@@ -236,7 +267,7 @@ if (sectorTabs.length && sectorInfo && sectorVideoA) {
     sectorTabs.forEach(tab => {
         tab.addEventListener('mouseenter', () => {
             if (tab.classList.contains('active') || switching) return;
-            const src = sectorSources[tab.dataset.sector] || '';
+            const src = pickSrc(tab.dataset.sector);
             const filename = src.split('/').pop();
             if (!backVideo.currentSrc.endsWith(filename)) {
                 backVideo.src = src;
@@ -257,15 +288,18 @@ if (sectorTabs.length && sectorInfo && sectorVideoA) {
             // Slide out current panel text
             sectorInfoPanels.forEach(p => p.classList.remove('active'));
 
-            // Crossfade — may already be buffered from hover preload
-            crossfadeTo(sectorSources[target] || '');
-
-            // Slide in new panel text
+            // Slide in new panel text after slide-out completes
             setTimeout(() => {
                 const next = document.getElementById('info-' + target);
                 if (next) next.classList.add('active');
                 switching = false;
             }, 280);
+
+            // Defer video load until text animations have had two frames to
+            // reach the compositor — avoids GPU contention mid-transition
+            requestAnimationFrame(() => requestAnimationFrame(() => {
+                crossfadeTo(pickSrc(target));
+            }));
         });
     });
 
