@@ -293,6 +293,19 @@ h1, h2, h3 {
     text-transform: uppercase;
 }
 
+.hero-sectors {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 1.75rem;
+    opacity: 0;
+    animation: fadeSlideUp 0.8s ease forwards;
+    animation-delay: 0.85s;
+}
+
 .contact-phone {
     display: inline-block;
     font-family: 'Rajdhani', sans-serif;
@@ -384,6 +397,12 @@ section {
     max-width: 100%;
     padding-left: 3.75rem;
     padding-right: 3.75rem;
+}
+
+#process .section-inner,
+#contact .section-inner {
+    padding-top: 7rem;
+    padding-bottom: 7rem;
 }
 
 .section-header {

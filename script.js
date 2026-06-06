@@ -41,7 +41,7 @@ function playClip(src) {
     }, { once: true });
     heroBg.addEventListener('error', () => {
         advanceIndex();
-        doTransition();
+        playClip(heroPlaylist[heroIndex]);
     }, { once: true });
 }
 
