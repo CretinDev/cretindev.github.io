@@ -69,77 +69,14 @@ function doTransition() {
 
 playClip(heroPlaylist[heroIndex]);
 
-heroBg.addEventListener('timeupdate', () => {
+setInterval(() => {
     if (transitioning || !heroBg.duration) return;
     if (heroBg.duration - heroBg.currentTime <= 1.5) doTransition();
-});
+}, 500);
 
 heroBg.addEventListener('ended', () => {
     if (!transitioning) doTransition();
 });
-
-// Section snap scrolling
-(function () {
-    const sections = Array.from(document.querySelectorAll('section'));
-    let blocked = false;
-
-    // Cache positions to avoid forced reflow on every scroll event
-    let sectionTops = sections.map(s => s.offsetTop);
-    window.addEventListener('resize', () => {
-        sectionTops = sections.map(s => s.offsetTop);
-    });
-
-    function ease(t) {
-        return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
-    }
-
-    function scrollToSection(index) {
-        if (index < 0 || index >= sections.length) return;
-        const startY = window.scrollY;
-        const targetY = sectionTops[index];
-        const dist = targetY - startY;
-        if (Math.abs(dist) < 2) return;
-
-        const duration = 600;
-        const t0 = performance.now();
-        blocked = true;
-
-        (function tick(now) {
-            const p = Math.min((now - t0) / duration, 1);
-            window.scrollTo(0, startY + dist * ease(p));
-            if (p < 1) {
-                requestAnimationFrame(tick);
-            } else {
-                setTimeout(() => { blocked = false; }, 250);
-            }
-        }(performance.now()));
-    }
-
-    function getTargetIndex(dir) {
-        const y = window.scrollY + 8;
-        let current = 0;
-        for (let i = sectionTops.length - 1; i >= 0; i--) {
-            if (sectionTops[i] <= y) { current = i; break; }
-        }
-        return current + dir;
-    }
-
-    window.addEventListener('wheel', (e) => {
-        if (e.target.closest('textarea')) return;
-        e.preventDefault();
-        if (blocked) return;
-        scrollToSection(getTargetIndex(e.deltaY > 0 ? 1 : -1));
-    }, { passive: false });
-
-    let touchY = 0;
-    window.addEventListener('touchstart', (e) => { touchY = e.touches[0].clientY; }, { passive: true });
-    window.addEventListener('touchend', (e) => {
-        if (blocked) return;
-        const dy = touchY - e.changedTouches[0].clientY;
-        if (Math.abs(dy) < 40) return;
-        scrollToSection(getTargetIndex(dy > 0 ? 1 : -1));
-    }, { passive: true });
-}());
 
 // Navbar: transparent at top, frosted glass on scroll
 const navbar = document.getElementById('navbar');
@@ -258,20 +195,6 @@ if (sectorTabs.length && sectorInfo && sectorVideoA) {
     syncTabHeight();
 
     let switching = false;
-
-    // Preload on hover — GPU decoder initialises before the click so the
-    // spike doesn't land during the transition animation
-    sectorTabs.forEach(tab => {
-        tab.addEventListener('mouseenter', () => {
-            if (tab.classList.contains('active') || switching) return;
-            const src = pickSrc(tab.dataset.sector);
-            const filename = src.split('/').pop();
-            if (!backVideo.currentSrc.endsWith(filename)) {
-                backVideo.src = src;
-                backVideo.load();
-            }
-        });
-    });
 
     sectorTabs.forEach(tab => {
         tab.addEventListener('click', () => {

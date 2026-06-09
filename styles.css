@@ -19,6 +19,7 @@
 
 html {
     scroll-behavior: smooth;
+    scroll-snap-type: y mandatory;
 }
 
 body {
@@ -28,19 +29,6 @@ body {
     line-height: 1.6;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
-}
-
-/* Barely-there grid — texture only, not a feature */
-body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image:
-        linear-gradient(rgba(75, 122, 158, 0.012) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(75, 122, 158, 0.012) 1px, transparent 1px);
-    background-size: 65px 65px;
-    pointer-events: none;
-    z-index: 0;
 }
 
 h1, h2, h3 {
@@ -382,6 +370,7 @@ h1, h2, h3 {
 section {
     position: relative;
     z-index: 1;
+    scroll-snap-align: start;
 }
 
 #services { background: var(--bg);  min-height: 100vh; }
