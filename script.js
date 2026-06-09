@@ -219,10 +219,7 @@ if (sectorTabs.length && sectorInfo && sectorVideoA) {
     // A is front (visible), B is back (loading)
     let frontVideo = sectorVideoA;
     let backVideo  = sectorVideoB;
-
-    frontVideo.src = pickSrc('residential');
-    frontVideo.load();
-    frontVideo.play().catch(() => {});
+    let sectorLoaded = false;
 
     function crossfadeTo(src) {
         const filename = src.split('/').pop();
@@ -303,17 +300,22 @@ if (sectorTabs.length && sectorInfo && sectorVideoA) {
         });
     });
 
-    // Pause both sector videos when the services section is off-screen
+    // Load and play sector video only when services section is actually in view
     const servicesSection = document.getElementById('services');
     if (servicesSection) {
         new IntersectionObserver((entries) => {
             if (entries[0].isIntersecting) {
+                if (!sectorLoaded) {
+                    sectorLoaded = true;
+                    frontVideo.src = pickSrc('residential');
+                    frontVideo.load();
+                }
                 frontVideo.play().catch(() => {});
             } else {
                 frontVideo.pause();
                 backVideo.pause();
             }
-        }, { threshold: 0.1 }).observe(servicesSection);
+        }, { threshold: 0.5 }).observe(servicesSection);
     }
 }
 
@@ -324,7 +326,7 @@ new IntersectionObserver((entries) => {
     } else {
         heroBg.pause();
     }
-}, { threshold: 0.1 }).observe(document.getElementById('hero'));
+}, { threshold: 0.5 }).observe(document.getElementById('hero'));
 
 // Contact form: submit to Formspree
 const contactForm = document.getElementById('contactForm');
