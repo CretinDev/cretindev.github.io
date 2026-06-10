@@ -18,9 +18,36 @@ function buildHeroPlaylist() {
     ];
 }
 
+const heroSectorPlaylists = {
+    residential:  [
+        'assets/Residential/Sequence 02.mp4',
+        'assets/Residential/D956.1080.fade.mp4',
+        'assets/Residential/szarka.mp4',
+        'assets/Residential/1130D.1080.fade.mp4',
+        'assets/Residential/204B.1080.fade.mp4',
+    ],
+    commercial:   [
+        'assets/Commercial/commercial-1.mp4',
+        'assets/Commercial/CommrecialWaterDamage1.mp4',
+        'assets/Commercial/CommrecialWaterDamage2.mp4',
+        'assets/Commercial/CommrecialWaterDamage3.mp4',
+    ],
+    industrial:   [
+        'assets/Industrial/industrial-1.mp4',
+        'assets/Industrial/industrial-2.mp4',
+        'assets/Industrial/industrial-3.mp4',
+    ],
+    institutional: null,
+    tourism:      [
+        'assets/Tourism/Fall-1.mp4',
+        'assets/Tourism/Summer-1.mp4',
+    ],
+};
+
 let heroPlaylist = buildHeroPlaylist();
 let heroIndex = 0;
 let transitioning = false;
+let activeSector = null;
 
 const heroBg = document.getElementById('heroBg');
 const heroFade = document.getElementById('heroFade');
@@ -28,8 +55,12 @@ const heroFade = document.getElementById('heroFade');
 function advanceIndex() {
     heroIndex++;
     if (heroIndex >= heroPlaylist.length) {
-        heroPlaylist = buildHeroPlaylist();
-        heroIndex = 0;
+        if (activeSector && heroSectorPlaylists[activeSector]) {
+            heroIndex = 0;
+        } else {
+            heroPlaylist = buildHeroPlaylist();
+            heroIndex = 0;
+        }
     }
 }
 
@@ -250,6 +281,34 @@ new IntersectionObserver((entries) => {
         heroBg.pause();
     }
 }, { threshold: 0.5 }).observe(document.getElementById('hero'));
+
+// Hero sector filter buttons
+document.querySelectorAll('.hero-sector-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        const sector = btn.dataset.sector;
+        const clips  = heroSectorPlaylists[sector];
+
+        if (activeSector === sector) {
+            // Deselect — back to mixed
+            activeSector = null;
+            document.querySelectorAll('.hero-sector-btn').forEach(b => b.classList.remove('active'));
+            heroPlaylist = buildHeroPlaylist();
+            heroIndex    = heroPlaylist.length - 1;
+            if (!transitioning) doTransition();
+        } else {
+            activeSector = sector;
+            document.querySelectorAll('.hero-sector-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            if (clips && clips.length) {
+                heroPlaylist = clips.slice();
+                heroIndex    = heroPlaylist.length - 1;
+                if (!transitioning) doTransition();
+            }
+            // Institutional (no clips): button highlights, current clip finishes, then mixed resumes
+        }
+    });
+});
 
 // Contact form: submit to Formspree
 const contactForm = document.getElementById('contactForm');

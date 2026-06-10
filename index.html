@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&family=Rajdhani:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <link rel="preload" as="video" href="assets/Residential/Sequence 02.mp4" type="video/mp4">
 </head>
 <body>
 
@@ -36,7 +37,17 @@
             <div class="hero-tag">NORTH BAY, ONTARIO</div>
             <h1 class="hero-title">APTITUDE AERIAL</h1>
             <p class="hero-sub">Clean aerial documentation. Same day delivery.</p>
-            <div class="hero-sectors">Residential &nbsp;·&nbsp; Commercial &nbsp;·&nbsp; Industrial &nbsp;·&nbsp; Institutional &nbsp;·&nbsp; Tourism</div>
+            <div class="hero-sectors">
+                <button class="hero-sector-btn" data-sector="residential">Residential</button>
+                <span class="hero-sector-sep">·</span>
+                <button class="hero-sector-btn" data-sector="commercial">Commercial</button>
+                <span class="hero-sector-sep">·</span>
+                <button class="hero-sector-btn" data-sector="industrial">Industrial</button>
+                <span class="hero-sector-sep">·</span>
+                <button class="hero-sector-btn" data-sector="institutional">Institutional</button>
+                <span class="hero-sector-sep">·</span>
+                <button class="hero-sector-btn" data-sector="tourism">Tourism</button>
+            </div>
             <a href="#contact" class="btn-primary hero-btn">BOOK A SURVEY</a>
         </div>
     </section>
