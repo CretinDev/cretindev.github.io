@@ -1,21 +1,14 @@
 function buildHeroPlaylist() {
-    const tail = [
-        'assets/Residential/szarka.mp4',
-        'assets/Residential/1130D.1080.fade.mp4',
-        'assets/Residential/204B.1080.fade.mp4',
-        'assets/Commercial/CommrecialWaterDamage1.mp4',
-        'assets/Industrial/industrial-1.mp4',
-    ];
-    // Fisher-Yates shuffle
-    for (let i = tail.length - 1; i > 0; i--) {
+    // One random clip from each sector with clips, sectors shuffled each cycle
+    const sectors = Object.keys(heroSectorPlaylists).filter(s => heroSectorPlaylists[s]);
+    for (let i = sectors.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
-        [tail[i], tail[j]] = [tail[j], tail[i]];
+        [sectors[i], sectors[j]] = [sectors[j], sectors[i]];
     }
-    return [
-        'assets/Residential/Sequence 02.mp4',  // always first
-        'assets/Residential/D956.1080.fade.mp4', // always second
-        ...tail,
-    ];
+    return sectors.map(s => {
+        const clips = heroSectorPlaylists[s];
+        return clips[Math.floor(Math.random() * clips.length)];
+    });
 }
 
 const heroSectorPlaylists = {
@@ -44,10 +37,12 @@ const heroSectorPlaylists = {
     ],
 };
 
-let heroPlaylist = buildHeroPlaylist();
-let heroIndex = 0;
+// Default to a random sector on load
+const _sectorsWithClips = Object.keys(heroSectorPlaylists).filter(s => heroSectorPlaylists[s]);
+let activeSector  = _sectorsWithClips[Math.floor(Math.random() * _sectorsWithClips.length)];
+let heroPlaylist  = heroSectorPlaylists[activeSector].slice();
+let heroIndex     = 0;
 let transitioning = false;
-let activeSector = null;
 
 const heroBg = document.getElementById('heroBg');
 const heroFade = document.getElementById('heroFade');
@@ -97,6 +92,11 @@ function doTransition() {
         setTimeout(fadeBack, 2000);
     }, 500);
 }
+
+// Mark the default sector button active on load
+document.querySelectorAll('.hero-sector-btn').forEach(b => {
+    b.classList.toggle('active', b.dataset.sector === activeSector);
+});
 
 playClip(heroPlaylist[heroIndex]);
 
