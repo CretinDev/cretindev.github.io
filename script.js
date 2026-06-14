@@ -14,10 +14,10 @@ function buildHeroPlaylist() {
 const heroSectorPlaylists = {
     residential:  [
         'assets/Residential/Sequence 02.mp4',
-        'assets/Residential/D956.1080.fade.mp4',
-        'assets/Residential/szarka.mp4',
-        'assets/Residential/1130D.1080.fade.mp4',
-        'assets/Residential/204B.1080.fade.mp4',
+        'assets/Residential/Residential03.mp4',
+        'assets/Residential/Residential04.mp4',
+        'assets/Residential/Residential05.mp4',
+        'assets/Residential/Residential06.mp4',
     ],
     commercial:   [
         'assets/Commercial/commercial-1.mp4',
@@ -32,8 +32,12 @@ const heroSectorPlaylists = {
     ],
     institutional: null,
     tourism:      [
-        'assets/Tourism/Fall-1.mp4',
-        'assets/Tourism/Summer-1.mp4',
+        'assets/Tourism/Hero.Tourism.Autumn1.mp4',
+        'assets/Tourism/Hero.Tourism.Autumn2.mp4',
+        'assets/Tourism/Hero.Tourism.Summer.12MBPS.mp4',
+        'assets/Tourism/Hero.Tourism.Summer2.14MBPS.mp4',
+        'assets/Tourism/Hero.Tourism.Summer3.14MBPS.mp4',
+        'assets/Tourism/Hero.Tourism.Summer4.14MBPS.mp4',
     ],
 };
 
@@ -166,10 +170,10 @@ const sectorVideoB     = document.getElementById('sectorVideoB');
 const sectorSources = {
     // Sequence 02 is reserved for the hero — pick randomly from the rest
     residential: [
-        'assets/Residential/D956.1080.fade.mp4',
-        'assets/Residential/szarka.mp4',
-        'assets/Residential/1130D.1080.fade.mp4',
-        'assets/Residential/204B.1080.fade.mp4',
+        'assets/Residential/Residential03.mp4',
+        'assets/Residential/Residential04.mp4',
+        'assets/Residential/Residential05.mp4',
+        'assets/Residential/Residential06.mp4',
     ],
     commercial:  'assets/Commercial/CommrecialWaterDamage1.mp4',
     industrial:  'assets/Industrial/industrial-1.mp4',

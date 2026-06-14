@@ -18,11 +18,25 @@ document.querySelectorAll('.nav-links a').forEach(link => {
     });
 });
 
-// Seek each thumbnail to a representative frame once metadata loads
+// Lazy-load thumbnail previews — only fetch metadata when near the viewport
+const thumbObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const video  = entry.target;
+        const source = video.querySelector('source[data-src]');
+        if (source) {
+            source.src = source.dataset.src;
+            video.load();
+        }
+        thumbObserver.unobserve(video);
+    });
+}, { rootMargin: '300px' });
+
 document.querySelectorAll('.thumb-preview video').forEach(v => {
     v.addEventListener('loadedmetadata', () => {
         v.currentTime = Math.min(3, v.duration * 0.08);
     });
+    thumbObserver.observe(v);
 });
 
 // Main player elements
