@@ -32,11 +32,10 @@ const heroSectorPlaylists = {
     ],
     institutional: null,
     tourism:      [
-        'assets/Tourism/Hero.Tourism.Autumn1.mp4',
-        'assets/Tourism/Hero.Tourism.Summer.12MBPS.mp4',
-        'assets/Tourism/Hero.Tourism.Summer2.14MBPS.mp4',
-        'assets/Tourism/Hero.Tourism.Summer3.14MBPS.mp4',
-        'assets/Tourism/Hero.Tourism.Summer4.14MBPS.mp4',
+        'assets/Tourism/Hero Autumn 1of2.h265.mp4',
+        'assets/Tourism/Hero Autumn 2of2.h265.mp4',
+        'assets/Tourism/Hero Summer 1of2.h265.mp4',
+        'assets/Tourism/Hero Summer 2of2.h265.mp4',
     ],
 };
 
