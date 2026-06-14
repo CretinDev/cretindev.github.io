@@ -33,7 +33,6 @@ const heroSectorPlaylists = {
     institutional: null,
     tourism:      [
         'assets/Tourism/Hero.Tourism.Autumn1.mp4',
-        'assets/Tourism/Hero.Tourism.Autumn2.mp4',
         'assets/Tourism/Hero.Tourism.Summer.12MBPS.mp4',
         'assets/Tourism/Hero.Tourism.Summer2.14MBPS.mp4',
         'assets/Tourism/Hero.Tourism.Summer3.14MBPS.mp4',
@@ -292,25 +291,18 @@ document.querySelectorAll('.hero-sector-btn').forEach(btn => {
         const sector = btn.dataset.sector;
         const clips  = heroSectorPlaylists[sector];
 
-        if (activeSector === sector) {
-            // Deselect — back to mixed
-            activeSector = null;
-            document.querySelectorAll('.hero-sector-btn').forEach(b => b.classList.remove('active'));
-            heroPlaylist = buildHeroPlaylist();
+        if (activeSector === sector) return;
+
+        activeSector = sector;
+        document.querySelectorAll('.hero-sector-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        if (clips && clips.length) {
+            heroPlaylist = clips.slice();
             heroIndex    = heroPlaylist.length - 1;
             if (!transitioning) doTransition();
-        } else {
-            activeSector = sector;
-            document.querySelectorAll('.hero-sector-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-
-            if (clips && clips.length) {
-                heroPlaylist = clips.slice();
-                heroIndex    = heroPlaylist.length - 1;
-                if (!transitioning) doTransition();
-            }
-            // Institutional (no clips): button highlights, current clip finishes, then mixed resumes
         }
+        // Institutional (no clips): button highlights, current clip finishes, then mixed resumes
     });
 });
 
