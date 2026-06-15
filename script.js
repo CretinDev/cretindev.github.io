@@ -166,8 +166,8 @@ const sectorVideoB     = document.getElementById('sectorVideoB');
 
 // Arrays = random pick per click; strings = fixed clip
 const sectorSources = {
-    // Sequence 02 is reserved for the hero — pick randomly from the rest
     residential: [
+        'assets/Residential/Sequence 02.mp4',
         'assets/Residential/Residential03.mp4',
         'assets/Residential/Residential04.mp4',
         'assets/Residential/Residential05.mp4',
@@ -298,7 +298,7 @@ document.querySelectorAll('.hero-sector-btn').forEach(btn => {
 
         if (clips && clips.length) {
             heroPlaylist = clips.slice();
-            heroIndex    = heroPlaylist.length - 1;
+            heroIndex    = Math.floor(Math.random() * clips.length) - 1;
             if (!transitioning) doTransition();
         }
         // Institutional (no clips): button highlights, current clip finishes, then mixed resumes
