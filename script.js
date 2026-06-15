@@ -30,7 +30,6 @@ const heroSectorPlaylists = {
         'assets/Industrial/industrial-2.mp4',
         'assets/Industrial/industrial-3.mp4',
     ],
-    institutional: null,
     tourism:      [
         'assets/Tourism/Hero Autumn 1of2.h265.mp4',
         'assets/Tourism/Hero Autumn 2of2.h265.mp4',
@@ -41,10 +40,11 @@ const heroSectorPlaylists = {
 
 // Default to a random sector on load
 const _sectorsWithClips = Object.keys(heroSectorPlaylists).filter(s => heroSectorPlaylists[s]);
-let activeSector  = _sectorsWithClips[Math.floor(Math.random() * _sectorsWithClips.length)];
-let heroPlaylist  = heroSectorPlaylists[activeSector].slice();
-let heroIndex     = 0;
-let transitioning = false;
+let activeSector       = _sectorsWithClips[Math.floor(Math.random() * _sectorsWithClips.length)];
+let heroPlaylist       = heroSectorPlaylists[activeSector].slice();
+let heroIndex          = 0;
+let transitioning      = false;
+let industrialFirstClick = true;
 
 const heroBg = document.getElementById('heroBg');
 const heroFade = document.getElementById('heroFade');
@@ -298,10 +298,11 @@ document.querySelectorAll('.hero-sector-btn').forEach(btn => {
 
         if (clips && clips.length) {
             heroPlaylist = clips.slice();
-            heroIndex    = Math.floor(Math.random() * clips.length) - 1;
+            heroIndex    = (sector === 'industrial' && industrialFirstClick)
+                ? (industrialFirstClick = false, -1)
+                : Math.floor(Math.random() * clips.length) - 1;
             if (!transitioning) doTransition();
         }
-        // Institutional (no clips): button highlights, current clip finishes, then mixed resumes
     });
 });
 
