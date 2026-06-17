@@ -31,10 +31,12 @@ const heroSectorPlaylists = {
         'assets/Industrial/industrial-3.mp4',
     ],
     tourism:      [
-        'assets/Tourism/Hero Autumn 1of2.h265.mp4',
-        'assets/Tourism/Hero Autumn 2of2.h265.mp4',
-        'assets/Tourism/Hero Summer 1of2.h265.mp4',
-        'assets/Tourism/Hero Summer 2of2.h265.mp4',
+        'assets/Tourism/autumn 1.mp4',
+        'assets/Tourism/autumn 2.mp4',
+        'assets/Tourism/autumn 3.mp4',
+        'assets/Tourism/summer 1.mp4',
+        'assets/Tourism/summer 2.mp4',
+        'assets/Tourism/winter 1.mp4',
     ],
 };
 
