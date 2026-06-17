@@ -204,7 +204,7 @@ h1, h2, h3 {
     position: absolute;
     inset: 0;
     background:
-        radial-gradient(ellipse at center, transparent 30%, rgba(17, 17, 17, 0.55) 100%),
+        radial-gradient(ellipse at 62% 50%, transparent 35%, rgba(17, 17, 17, 0.5) 100%),
         linear-gradient(180deg, rgba(17, 17, 17, 0.08) 0%, transparent 22%, transparent 70%, rgba(17, 17, 17, 0.2) 100%);
 }
 
