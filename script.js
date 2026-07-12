@@ -40,9 +40,7 @@ const heroSectorPlaylists = {
     ],
 };
 
-// Default to a random sector on load
-const _sectorsWithClips = Object.keys(heroSectorPlaylists).filter(s => heroSectorPlaylists[s]);
-let activeSector       = _sectorsWithClips[Math.floor(Math.random() * _sectorsWithClips.length)];
+let activeSector       = 'tourism';
 let heroPlaylist       = heroSectorPlaylists[activeSector].slice();
 let heroIndex          = 0;
 let transitioning      = false;
@@ -220,14 +218,37 @@ if (sectorTabs.length && sectorInfo && sectorVideoA) {
     }
 
     // Match tab column height to video height on load and resize
+    // (desktop side-by-side layout only — mobile stacks tabs above the
+    // video in a single row, sized by their own content instead)
     function syncTabHeight() {
         const wrap = document.querySelector('.sector-video-wrap');
         const tabs = document.querySelector('.sector-tabs');
-        if (wrap && tabs) tabs.style.height = wrap.offsetHeight + 'px';
+        if (!wrap || !tabs) return;
+        tabs.style.height = window.innerWidth > 900 ? wrap.offsetHeight + 'px' : '';
     }
     window.addEventListener('load',   syncTabHeight);
     window.addEventListener('resize', syncTabHeight);
     syncTabHeight();
+
+    // Panels are stacked absolutely and crossfade via opacity (never removed
+    // from flow), so .sector-info needs an explicit height sized to the
+    // tallest panel — otherwise it has no natural height of its own and
+    // switching sectors would resize the container, jolting the video below.
+    function syncInfoHeight() {
+        if (!sectorInfo) return;
+        let max = 0;
+        sectorInfoPanels.forEach(p => { if (p.scrollHeight > max) max = p.scrollHeight; });
+        sectorInfo.style.minHeight = max + 'px';
+    }
+    window.addEventListener('load',   syncInfoHeight);
+    window.addEventListener('resize', syncInfoHeight);
+    syncInfoHeight();
+    // Re-measure once web fonts finish swapping in — Orbitron/Rajdhani load
+    // with display=swap, so an initial fallback-font measurement can end up
+    // shorter than the real text, clipping the bottom of the panel.
+    if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(syncInfoHeight);
+    }
 
     let switching = false;
 
@@ -339,3 +360,21 @@ if (contactForm) {
         }, 3000);
     });
 }
+
+// The footer follows #contact in normal flow, so if #contact fills a full
+// screen on its own, the footer always sits just past the fold and needs
+// its own separate scroll-snap step to reach. Shrink #contact by the
+// footer's real rendered height so both land together in one view.
+(function syncContactHeight() {
+    const contact = document.getElementById('contact');
+    const foot = document.querySelector('footer');
+    if (!contact || !foot) return;
+
+    function sync() {
+        const vh = window.visualViewport ? window.visualViewport.height : window.innerHeight;
+        contact.style.minHeight = (vh - foot.offsetHeight) + 'px';
+    }
+    window.addEventListener('load', sync);
+    window.addEventListener('resize', sync);
+    sync();
+})();
