@@ -367,25 +367,21 @@ if (contactForm) {
 const galleryNumbers = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,32];
 const galleryImages = galleryNumbers.map(n => `Screenshots/Screenshot_${n}.jpg`);
 
-const galleryImgA = document.getElementById('galleryImgA');
-const galleryImgB = document.getElementById('galleryImgB');
+const galleryImg = document.getElementById('galleryImg');
 
-if (galleryImgA && galleryImgB && galleryImages.length) {
-    let galleryFront = galleryImgA;
-    let galleryBack  = galleryImgB;
+if (galleryImg && galleryImages.length) {
     let galleryIndex = 0;
 
-    galleryFront.src = galleryImages[galleryIndex];
-    galleryFront.classList.add('active');
+    galleryImg.src = galleryImages[galleryIndex];
+    requestAnimationFrame(() => galleryImg.classList.add('active'));
 
     function showNextGalleryImage() {
-        galleryIndex = (galleryIndex + 1) % galleryImages.length;
-        galleryBack.src = galleryImages[galleryIndex];
-        galleryBack.classList.add('active');
-        galleryFront.classList.remove('active');
-        const prev = galleryFront;
-        galleryFront = galleryBack;
-        galleryBack = prev;
+        galleryImg.classList.remove('active');
+        setTimeout(() => {
+            galleryIndex = (galleryIndex + 1) % galleryImages.length;
+            galleryImg.src = galleryImages[galleryIndex];
+            galleryImg.classList.add('active');
+        }, 650); // fade-out (500ms) + brief blank gap
     }
 
     const gallerySection = document.getElementById('contact');
