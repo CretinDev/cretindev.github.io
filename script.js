@@ -40,7 +40,7 @@ const heroSectorPlaylists = {
     ],
 };
 
-let activeSector       = 'tourism';
+let activeSector       = 'commercial';
 let heroPlaylist       = heroSectorPlaylists[activeSector].slice();
 let heroIndex          = 0;
 let transitioning      = false;
@@ -361,20 +361,42 @@ if (contactForm) {
     });
 }
 
-// The footer follows #contact in normal flow, so if #contact fills a full
-// screen on its own, the footer always sits just past the fold and needs
-// its own separate scroll-snap step to reach. Shrink #contact by the
-// footer's real rendered height so both land together in one view.
-(function syncContactHeight() {
-    const contact = document.getElementById('contact');
-    const foot = document.querySelector('footer');
-    if (!contact || !foot) return;
+// Work gallery: crossfade through survey screenshots. Filenames are numbered
+// 1-30 plus 32 (no 31) to match what's actually in /Screenshots — add or
+// remove numbers here as photos are added or removed from that folder.
+const galleryNumbers = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,32];
+const galleryImages = galleryNumbers.map(n => `Screenshots/Screenshot_${n}.jpg`);
 
-    function sync() {
-        const vh = window.visualViewport ? window.visualViewport.height : window.innerHeight;
-        contact.style.minHeight = (vh - foot.offsetHeight) + 'px';
+const galleryImgA = document.getElementById('galleryImgA');
+const galleryImgB = document.getElementById('galleryImgB');
+
+if (galleryImgA && galleryImgB && galleryImages.length) {
+    let galleryFront = galleryImgA;
+    let galleryBack  = galleryImgB;
+    let galleryIndex = 0;
+
+    galleryFront.src = galleryImages[galleryIndex];
+    galleryFront.classList.add('active');
+
+    function showNextGalleryImage() {
+        galleryIndex = (galleryIndex + 1) % galleryImages.length;
+        galleryBack.src = galleryImages[galleryIndex];
+        galleryBack.classList.add('active');
+        galleryFront.classList.remove('active');
+        const prev = galleryFront;
+        galleryFront = galleryBack;
+        galleryBack = prev;
     }
-    window.addEventListener('load', sync);
-    window.addEventListener('resize', sync);
-    sync();
-})();
+
+    const gallerySection = document.getElementById('contact');
+    let galleryTimer = null;
+    new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) {
+            if (!galleryTimer) galleryTimer = setInterval(showNextGalleryImage, 4000);
+        } else if (galleryTimer) {
+            clearInterval(galleryTimer);
+            galleryTimer = null;
+        }
+    }, { threshold: 0.3 }).observe(gallerySection);
+}
+

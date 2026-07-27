@@ -229,7 +229,7 @@ h1, h2, h3 {
     opacity: 0;
     animation: fadeSlideUp 0.8s ease forwards;
     animation-delay: 0.3s;
-    text-shadow: 0 1px 4px rgba(0,0,0,0.9), 0 2px 10px rgba(0,0,0,0.35);
+    text-shadow: 0 1px 3px rgba(0,0,0,0.95), 0 2px 8px rgba(0,0,0,0.6), 0 4px 20px rgba(0,0,0,0.4);
 }
 
 .hero-title {
@@ -243,7 +243,7 @@ h1, h2, h3 {
     opacity: 0;
     animation: fadeSlideUp 0.8s ease forwards;
     animation-delay: 0.5s;
-    text-shadow: 0 0 80px rgba(10, 132, 255, 0.12), 0 1px 4px rgba(0,0,0,0.9), 0 2px 14px rgba(0,0,0,0.38);
+    text-shadow: 0 0 80px rgba(10, 132, 255, 0.12), 0 1px 3px rgba(0,0,0,0.95), 0 2px 8px rgba(0,0,0,0.65), 0 4px 22px rgba(0,0,0,0.42);
 }
 
 .hero-sub {
@@ -256,7 +256,7 @@ h1, h2, h3 {
     opacity: 0;
     animation: fadeSlideUp 0.8s ease forwards;
     animation-delay: 0.7s;
-    text-shadow: 0 1px 4px rgba(0,0,0,0.9), 0 2px 10px rgba(0,0,0,0.35);
+    text-shadow: 0 1px 3px rgba(0,0,0,0.95), 0 2px 8px rgba(0,0,0,0.6), 0 4px 20px rgba(0,0,0,0.4);
 }
 
 .hero-pricing {
@@ -309,16 +309,16 @@ h1, h2, h3 {
     padding: 0;
     cursor: pointer;
     font-family: 'Rajdhani', sans-serif;
-    font-size: 0.8rem;
-    font-weight: 500;
-    color: var(--text);
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #ffffff;
     letter-spacing: 3px;
     text-transform: uppercase;
     text-decoration: underline;
     text-underline-offset: 4px;
     text-decoration-color: rgba(200, 200, 200, 0.4);
     transition: color 0.2s ease, text-decoration-color 0.2s ease, font-weight 0.15s ease;
-    text-shadow: 0 1px 4px rgba(0,0,0,0.9), 0 2px 10px rgba(0,0,0,0.35);
+    text-shadow: 0 1px 2px rgba(0,0,0,1), 0 1px 4px rgba(0,0,0,0.9), 0 2px 10px rgba(0,0,0,0.7);
 }
 
 .hero-sector-btn:hover {
@@ -377,6 +377,14 @@ h1, h2, h3 {
     animation: fadeSlideUp 0.8s ease forwards;
     animation-delay: 0.9s;
     text-shadow: 0 1px 4px rgba(0,0,0,0.9), 0 2px 10px rgba(0,0,0,0.35);
+    background: var(--accent);
+    color: #ffffff;
+}
+
+.hero-btn:hover {
+    background: #5c8cb2;
+    color: #ffffff;
+    box-shadow: 0 0 20px rgba(75, 122, 158, 0.55), 0 4px 20px rgba(75, 122, 158, 0.35);
 }
 
 .btn-secondary {
@@ -410,8 +418,17 @@ section {
 }
 
 #services { background: var(--bg);  min-height: 100vh; min-height: 100dvh; content-visibility: auto; contain-intrinsic-size: auto 100vh; }
-#process  { background: var(--bg2); min-height: 100vh; min-height: 100dvh; border-top: 1px solid var(--accent-border); content-visibility: auto; contain-intrinsic-size: auto 100vh; }
-#contact  { background: var(--bg);  min-height: 100vh; min-height: 100dvh; border-top: 1px solid var(--accent-border); content-visibility: auto; contain-intrinsic-size: auto 100vh; }
+/* Content here can run taller than one screen, but the rest of the page is a
+   strict one-screen-per-scroll snap flow with no partial stops. Rather than
+   opting this section out of that (which left it "stuck" half-scrolled),
+   it's pinned to exactly one viewport tall with its own internal scroll —
+   the outer page still snaps to it in a single clean jump, and any extra
+   content scrolls within it before the next scroll carries on to #contact. */
+#process  { background: var(--bg2); height: 100vh; height: 100dvh; overflow-y: auto; border-top: 1px solid var(--accent-border); }
+/* Same reasoning as #process: stacking the form under the info block makes
+   this taller than one screen too, so it gets the same fixed-height +
+   internal-scroll treatment to stay a single clean snap stop. */
+#contact  { background: var(--bg);  height: 100vh; height: 100dvh; overflow-y: auto; border-top: 1px solid var(--accent-border); }
 
 .section-inner {
     max-width: 1320px;
@@ -429,6 +446,13 @@ section {
 #contact .section-inner {
     padding-top: 7rem;
     padding-bottom: 7rem;
+}
+
+#process .section-inner,
+#contact .section-inner {
+    max-width: 100%;
+    padding-left: 3.75rem;
+    padding-right: 3.75rem;
 }
 
 .section-header {
@@ -601,12 +625,16 @@ section {
    ============================================================ */
 .process-steps {
     display: flex;
-    align-items: flex-start;
+    flex-direction: column;
+    gap: 1.75rem;
+    width: 100%;
 }
 
 .process-step {
-    flex: 1;
-    padding: 2.25rem 2rem;
+    width: 100%;
+    max-width: 1040px;
+    box-sizing: border-box;
+    padding: 1.5rem 1.75rem;
     border: 1px solid var(--accent-border);
     background: var(--bg-card);
     border-radius: 4px;
@@ -618,26 +646,10 @@ section {
     background: rgba(10, 132, 255, 0.04);
 }
 
-.process-connector {
-    width: 52px;
-    height: 1px;
-    background: linear-gradient(90deg, var(--accent-border), var(--accent), var(--accent-border));
-    align-self: center;
-    flex-shrink: 0;
-    position: relative;
-}
-
-.process-connector::after {
-    content: '';
-    position: absolute;
-    right: -1px;
-    top: -4px;
-    width: 7px;
-    height: 7px;
-    border-right: 1px solid var(--accent);
-    border-top: 1px solid var(--accent);
-    transform: rotate(45deg);
-}
+/* Diagonal cascade: Book top-left, Fly centered, Receive bottom-right */
+.process-step:nth-child(1) { align-self: flex-start; }
+.process-step:nth-child(2) { align-self: center; }
+.process-step:nth-child(3) { align-self: flex-end; }
 
 .step-num {
     font-family: 'Orbitron', monospace;
@@ -724,9 +736,42 @@ section {
    ============================================================ */
 .contact-grid {
     display: grid;
-    grid-template-columns: 1fr 1.6fr;
+    grid-template-columns: minmax(320px, 480px) minmax(280px, 400px);
+    justify-content: space-between;
     gap: 5rem;
     align-items: start;
+}
+
+.contact-left {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    margin-left: 3rem;
+}
+
+.contact-gallery {
+    aspect-ratio: 16 / 9;
+    height: auto;
+    min-height: 0;
+    position: relative;
+    border: 1px solid var(--accent-border);
+    background: var(--bg-card);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.contact-gallery-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+
+.contact-gallery-img.active {
+    opacity: 1;
 }
 
 .contact-info > p {
@@ -960,6 +1005,10 @@ footer p {
         gap: 3rem;
     }
 
+    .contact-left {
+        margin-left: 0;
+    }
+
     .science-stats {
         grid-template-columns: 1fr;
         gap: 1rem;
@@ -980,8 +1029,15 @@ footer p {
 
     .process-step {
         width: 100%;
+        max-width: none;
         text-align: center;
         padding: 1.5rem 1.25rem;
+    }
+
+    .process-step:nth-child(1),
+    .process-step:nth-child(2),
+    .process-step:nth-child(3) {
+        align-self: center;
     }
 
     .process-step .step-num {
@@ -992,26 +1048,16 @@ footer p {
         margin-bottom: 0.5rem;
     }
 
-    .process-connector {
-        width: 0;
-        height: 28px;
-        background: none;
-        border-left: 2px dotted var(--accent);
-        align-self: center;
-        margin: 0;
-    }
-
-    .process-connector::after {
-        display: none;
-    }
-
     /* Trim the section's own padding and header spacing to fit comfortably */
     #process .section-inner {
         padding-top: 5rem;
         padding-bottom: 2.5rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
     }
 
-    #process .section-header {
+    #process .section-header,
+    #services .section-header {
         margin-bottom: 1.25rem;
     }
 }
@@ -1063,6 +1109,20 @@ footer p {
 
     .hero-title {
         font-size: clamp(1.8rem, 9vw, 3rem);
+    }
+
+    .hero-sectors {
+        gap: 0.35rem 0;
+    }
+
+    .hero-sector-sep {
+        display: none;
+    }
+
+    .hero-sector-btn {
+        font-size: 1rem;
+        padding: 0.5rem 0.7rem;
+        letter-spacing: 2px;
     }
 
     .footer-inner {

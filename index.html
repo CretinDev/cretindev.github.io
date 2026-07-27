@@ -49,7 +49,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&family=Rajdhani:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    <link rel="preload" as="video" href="assets/Tourism/summer 1.mp4" type="video/mp4">
+    <link rel="preload" as="video" href="assets/Commercial/commercial-1.mp4" type="video/mp4">
 </head>
 <body>
 
@@ -59,6 +59,7 @@
             <ul class="nav-links">
                 <li><a href="#services">Services</a></li>
                 <li><a href="gallery.html">Portfolio</a></li>
+                <li><a href="gallery-youtube.html">YouTube</a></li>
                 <li><a href="#contact" class="nav-cta">Book a Survey</a></li>
             </ul>
             <button class="mobile-toggle" aria-label="Menu">
@@ -171,19 +172,20 @@
                 <div class="process-step reveal">
                     <div class="step-num">01</div>
                     <h3>Book</h3>
-                    <p>Send your property address and preferred timing. We'll verify airspace, confirm weather windows, and schedule the flight.</p>
+                    <p>We start with a property address and a reason for the work order. Are we focused on the property bounds, structural and maintenance, or legal evidence? You convey the immediacy, urgency and the leniency of your needs. Some clients may be open to and adjustable scheduling, others may require strict time constraints and guidelines.</p>
+                    <p>We'll book a day and you can decide whether you'd like to meet me at the property and oversee the work, which can be quite valuable, or if you'd prefer the work to be carried out unsupervised. For repeat and routine bookings, we quickly  become confident in carrying out the work alone once we've been to the property once initially. Once a session is booked, it is important to notify occupants or residence of imaging that will take place. Additionally a "on the day of" reminder is usually suggested as well.</p>
+                    <p>Any specific details or focuses of the property should be conveyed in order to ensure coverage. This is the stage where we determine the best tool or drone for the task, depending mostly on urban density and safety.</p>
                 </div>
-                <div class="process-connector"></div>
                 <div class="process-step reveal">
                     <div class="step-num">02</div>
                     <h3>Fly</h3>
-                    <p>We arrive on-site, perform a complete aerial survey with the DJI Mini 4 Pro, and capture full documentation of the property. Flown as a sub-250g micro drone, a classification that simplifies airspace compliance under Transport Canada RPAS regulations.</p>
+                    <p>We use drones relative to the size of the job, but most commonly reach for microdrones, which fly beneath the regulations that require airspace authorization.</p>
+                    <p>One battery can offer around 25 minutes of flight time. We aim to maximize the usage of the battery, getting a combination of cinematic shots, survey imaging, and logically driven angles. We consciously value the business opportunity and aim to fulfill the needs and expectations of our clients, but also provide them with imagery that can also fit other purposes such as marketing and legal use cases. The try to aim for footage to be widely applicable or multi use.</p>
                 </div>
-                <div class="process-connector"></div>
                 <div class="process-step reveal">
                     <div class="step-num">03</div>
                     <h3>Receive</h3>
-                    <p>Raw, unedited 4K 60fps footage delivered on-site via USB, sent remotely, or uploaded as an unlisted YouTube link. No editing, no delay. A secondary copy is retained as a complimentary backup for 90 days.</p>
+                    <p>Footage can be delivered as early as the same day or evening, or next day. Footage can be exported and delivered via WeTransfer or placed on YouTube, allowing you to forward the finished product to whoever needs it. Additionally, Aptitude Aerial retains an archival copy of your footage stored locally in case the footage is ever lost. Video is typically exported in .H264 at 4k 60 fps.</p>
                 </div>
             </div>
         </div>
@@ -197,32 +199,38 @@
                 <h2>BOOK A SURVEY</h2>
             </div>
             <div class="contact-grid">
-                <div class="contact-info reveal">
-                    <p>Ready to document your property? Send a message and we'll get back to you within 24 hours. Want to give us a call instead?</p>
-                    <a href="tel:7057071377" class="contact-phone">705-707-1377</a>
-                    <div class="contact-details">
-                        <div class="contact-item">
-                            <span class="contact-label">Location</span>
-                            <span class="contact-val">Nipissing Region, Ontario</span>
-                        </div>
-                        <div class="contact-item">
-                            <span class="contact-label">Delivery</span>
-                            <span class="contact-val">USB, remote transfer, or YouTube link</span>
+                <div class="contact-left">
+                    <div class="contact-info reveal">
+                        <p>Ready to document your property? Send a message and we'll get back to you within 24 hours. Want to give us a call instead?</p>
+                        <a href="tel:7057071377" class="contact-phone">705-707-1377</a>
+                        <div class="contact-details">
+                            <div class="contact-item">
+                                <span class="contact-label">Location</span>
+                                <span class="contact-val">Nipissing Region, Ontario</span>
+                            </div>
+                            <div class="contact-item">
+                                <span class="contact-label">Delivery</span>
+                                <span class="contact-val">USB, remote transfer, or YouTube link</span>
+                            </div>
                         </div>
                     </div>
+                    <form class="contact-form reveal" id="contactForm" action="https://formspree.io/f/mwvajbyz" method="POST">
+                        <div class="form-group">
+                            <input type="text" name="name" placeholder="Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" name="email" placeholder="Email" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea name="message" placeholder="Additional details" rows="5"></textarea>
+                        </div>
+                        <button type="submit" class="btn-primary form-btn">SEND REQUEST</button>
+                    </form>
                 </div>
-                <form class="contact-form reveal" id="contactForm" action="https://formspree.io/f/mwvajbyz" method="POST">
-                    <div class="form-group">
-                        <input type="text" name="name" placeholder="Name" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="email" name="email" placeholder="Email" required>
-                    </div>
-                    <div class="form-group">
-                        <textarea name="message" placeholder="Additional details" rows="5"></textarea>
-                    </div>
-                    <button type="submit" class="btn-primary form-btn">SEND REQUEST</button>
-                </form>
+                <div class="contact-gallery reveal">
+                    <img class="contact-gallery-img" id="galleryImgA" alt="Aerial photo from a recent survey">
+                    <img class="contact-gallery-img" id="galleryImgB" alt="Aerial photo from a recent survey">
+                </div>
             </div>
         </div>
     </section>

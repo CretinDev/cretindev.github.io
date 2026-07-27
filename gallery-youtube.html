@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aerial Photography Portfolio | Aptitude Aerial — North Bay, Ontario</title>
+    <meta name="description" content="Browse drone footage from Aptitude Aerial — aerial surveys, landscape photography, and documentation from North Bay and Northern Ontario.">
+    <link rel="canonical" href="https://aptitudeaerial.com/gallery-youtube.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&family=Rajdhani:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="gallery.css">
+</head>
+<body>
+
+    <nav id="navbar">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-home">&#8592; Home</a>
+            <ul class="nav-links">
+                <li><a href="index.html#services">Services</a></li>
+                <li><a href="index.html#science">Why It Matters</a></li>
+                <li><a href="index.html#about">Pilot</a></li>
+                <li><a href="gallery.html">Portfolio</a></li>
+                <li><a href="gallery-youtube.html" class="active">YouTube</a></li>
+                <li><a href="index.html#contact" class="nav-cta">Book a Survey</a></li>
+            </ul>
+            <button class="mobile-toggle" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <section class="gallery-section">
+        <div class="gallery-inner">
+
+            <!-- Main player -->
+            <div class="main-player-wrap">
+                <div class="player-placeholder" id="playerPlaceholder">
+                    <span>SELECT A CLIP BELOW</span>
+                </div>
+                <div id="ytPlayer"></div>
+            </div>
+
+            <!-- Player info bar -->
+            <div class="player-meta">
+                <span id="videoTitle" class="video-meta-title"></span>
+                <span id="videoCategory" class="video-meta-cat"></span>
+            </div>
+
+            <!-- Thumbnail strip (rendered by gallery-youtube.js) -->
+            <div class="thumb-strip-outer">
+                <div class="thumb-strip" id="thumbStrip"></div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-inner">
+            <span class="footer-logo">Aptitude Aerial</span>
+            <p>&copy; 2026 Aptitude Aerial. North Bay, Ontario.</p>
+            <a href="index.html" class="footer-link">Home</a>
+        </div>
+    </footer>
+
+    <script src="gallery-youtube.js"></script>
+</body>
+</html>
