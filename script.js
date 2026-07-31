@@ -367,21 +367,42 @@ if (contactForm) {
 const galleryNumbers = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,32];
 const galleryImages = galleryNumbers.map(n => `Screenshots/Screenshot_${n}.jpg`);
 
-const galleryImg = document.getElementById('galleryImg');
+// Fisher-Yates shuffle so the slideshow order differs each page load.
+for (let i = galleryImages.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [galleryImages[i], galleryImages[j]] = [galleryImages[j], galleryImages[i]];
+}
 
-if (galleryImg && galleryImages.length) {
+const galleryLayers = [document.getElementById('galleryImgA'), document.getElementById('galleryImgB')];
+
+if (galleryLayers[0] && galleryLayers[1] && galleryImages.length) {
     let galleryIndex = 0;
+    let topLayer = 0; // index into galleryLayers currently showing/active
 
-    galleryImg.src = galleryImages[galleryIndex];
-    requestAnimationFrame(() => galleryImg.classList.add('active'));
+    galleryLayers[0].src = galleryImages[galleryIndex];
 
     function showNextGalleryImage() {
-        galleryImg.classList.remove('active');
-        setTimeout(() => {
-            galleryIndex = (galleryIndex + 1) % galleryImages.length;
-            galleryImg.src = galleryImages[galleryIndex];
-            galleryImg.classList.add('active');
-        }, 650); // fade-out (500ms) + brief blank gap
+        galleryIndex = (galleryIndex + 1) % galleryImages.length;
+        const nextLayer = topLayer === 0 ? 1 : 0;
+        const img = galleryLayers[nextLayer];
+        const nextSrc = galleryImages[galleryIndex];
+
+        const crossfade = () => {
+            img.classList.add('active');
+            galleryLayers[topLayer].classList.remove('active');
+            topLayer = nextLayer;
+        };
+
+        if (img.src.endsWith(nextSrc)) {
+            crossfade();
+        } else {
+            img.src = nextSrc;
+            if (img.decode) {
+                img.decode().then(crossfade).catch(crossfade);
+            } else {
+                img.onload = crossfade;
+            }
+        }
     }
 
     const gallerySection = document.getElementById('contact');
