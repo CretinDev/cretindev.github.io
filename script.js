@@ -21,9 +21,12 @@ const heroSectorPlaylists = {
     ],
     commercial:   [
         'assets/Commercial/commercial-1.mp4',
-        'assets/Commercial/CommrecialWaterDamage1.mp4',
-        'assets/Commercial/CommrecialWaterDamage2.mp4',
-        'assets/Commercial/CommrecialWaterDamage3.mp4',
+        'assets/Commercial/Commercial-2.mp4',
+    ],
+    propertyCondition: [
+        'assets/PropertyCondition/CommrecialWaterDamage1.mp4',
+        'assets/PropertyCondition/CommrecialWaterDamage2.mp4',
+        'assets/PropertyCondition/CommrecialWaterDamage3.mp4',
     ],
     industrial:   [
         'assets/Industrial/industrial-1.mp4',
@@ -173,9 +176,16 @@ const sectorSources = {
         'assets/Residential/Residential05.mp4',
         'assets/Residential/Residential06.mp4',
     ],
-    commercial:  'assets/Commercial/CommrecialWaterDamage1.mp4',
+    commercial:  [
+        'assets/Commercial/commercial-1.mp4',
+        'assets/Commercial/Commercial-2.mp4',
+    ],
     industrial:  'assets/Industrial/industrial-1.mp4',
-    legal:       'assets/Commercial/CommrecialWaterDamage2.mp4',
+    propertyCondition: [
+        'assets/PropertyCondition/CommrecialWaterDamage1.mp4',
+        'assets/PropertyCondition/CommrecialWaterDamage2.mp4',
+        'assets/PropertyCondition/CommrecialWaterDamage3.mp4',
+    ],
 };
 
 function pickSrc(sector) {

@@ -448,6 +448,16 @@ section {
     padding-bottom: 7rem;
 }
 
+#process .section-inner {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+#process .section-header {
+    flex: 0 0 auto;
+}
+
 #process .section-inner,
 #contact .section-inner {
     max-width: 100%;
@@ -623,21 +633,32 @@ section {
 /* ============================================================
    PROCESS / HOW IT WORKS
    ============================================================ */
+/* Three tall columns side by side so Book/Fly/Receive all sit in one
+   screen — #process is pinned to a fixed viewport height (see above), so
+   the row stretches to fill whatever's left under the header and each
+   column scrolls internally if its own text runs long, instead of the
+   page needing an extra scroll to reveal the third box. */
 .process-steps {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    align-items: stretch;
     gap: 1.75rem;
     width: 100%;
+    flex: 1 1 auto;
+    min-height: 0;
 }
 
 .process-step {
-    width: 100%;
-    max-width: 1040px;
+    flex: 1 1 0;
+    min-width: 0;
     box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
     padding: 1.5rem 1.75rem;
     border: 1px solid var(--accent-border);
     background: var(--bg-card);
     border-radius: 4px;
+    overflow-y: auto;
     transition: border-color 0.25s ease, background 0.25s ease;
 }
 
@@ -645,11 +666,6 @@ section {
     border-color: rgba(10, 132, 255, 0.5);
     background: rgba(10, 132, 255, 0.04);
 }
-
-/* Diagonal cascade: Book top-left, Fly centered, Receive bottom-right */
-.process-step:nth-child(1) { align-self: flex-start; }
-.process-step:nth-child(2) { align-self: center; }
-.process-step:nth-child(3) { align-self: flex-end; }
 
 .step-num {
     font-family: 'Orbitron', monospace;
@@ -1021,6 +1037,7 @@ footer p {
 @media (max-width: 1024px) {
     .process-steps {
         flex-direction: column;
+        flex: 0 1 auto;
         align-items: center;
         width: 80%;
         max-width: 460px;
@@ -1029,10 +1046,12 @@ footer p {
     }
 
     .process-step {
+        flex: 0 1 auto;
         width: 100%;
         max-width: none;
         text-align: center;
         padding: 1.5rem 1.25rem;
+        overflow-y: visible;
     }
 
     .process-step:nth-child(1),
